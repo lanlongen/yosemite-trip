@@ -4,11 +4,11 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
 <title>Yosemite Afternoon — Pick Your Plan</title>
-<meta name="description" content="Three ways to spend a half-day in Yosemite — iconic views, a swimming day, or an easy valley afternoon. Pick one on the day." />
+<meta name="description" content="A half-day in Yosemite from Mariposa: a recommended views-plus-swim plan, an easy valley pivot, and the lake we're saving for next time." />
 <meta name="theme-color" content="#1f3a2e" />
 <style>
   :root{
-    --pine:#1f3a2e; --pine-2:#2f5c45; --granite:#5b6b73; --water:#2f6b8f;
+    --pine:#1f3a2e; --pine-2:#2f5c45; --granite:#5b6b73; --water:#2f6b8f; --rec:#1f7a43;
     --gold:#d98a2b; --cream:#f6f3ec; --card:#ffffff; --ink:#1c2420;
     --line:#e4dfd3; --shadow:0 2px 14px rgba(31,58,46,.10);
   }
@@ -31,12 +31,10 @@
   .box.accent{border-left:4px solid var(--pine-2)}
   .keypoint{background:#f0f5f1;border-radius:10px;padding:11px 13px;margin:10px 0 0;font-size:.95rem;color:var(--pine)}
   .box ul{margin:8px 0 0;padding-left:20px}.box li{margin-bottom:6px}
-  /* Jump nav */
   .jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
   .jump a{text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:.85rem;color:var(--pine);font-weight:600;box-shadow:var(--shadow)}
   .jump a:active{transform:scale(.97)}
   .jump .primary{background:var(--pine);color:#fff;border-color:var(--pine)}
-  /* Compare table */
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff}
   table.compare{border-collapse:collapse;width:100%;min-width:520px;font-size:.86rem}
   table.compare th,table.compare td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
@@ -44,7 +42,6 @@
   table.compare tbody tr:last-child td{border-bottom:none}
   table.compare td.optname{font-weight:700;color:var(--pine);white-space:nowrap}
   .scroll-hint{font-size:.78rem;color:var(--granite);margin:6px 2px 0}
-  /* Preferences */
   .prefs h2{margin:0 0 4px;font-size:1.05rem;color:var(--pine)}
   .prefs .hint{margin:0 0 14px;font-size:.85rem;color:var(--granite)}
   .pref-group{margin-bottom:14px}.pref-group:last-of-type{margin-bottom:0}
@@ -55,35 +52,33 @@
   .chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff;font-weight:600}
   .tip{margin-top:15px;padding:12px 14px;background:#f0f5f1;border-radius:10px;font-size:.95rem;color:var(--pine);display:flex;gap:9px;align-items:flex-start}
   .tip .dot{flex:0 0 auto;margin-top:2px}
-  /* Option cards */
   .opt{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:16px 0;box-shadow:var(--shadow);scroll-margin-top:12px}
   .opt .body{padding:15px 16px 18px}
-  .optlabel{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;border-radius:7px;padding:4px 10px;margin-bottom:8px}
-  .optA .optlabel{background:var(--pine)}
-  .optB .optlabel{background:var(--water)}
-  .optC .optlabel{background:var(--gold)}
-  .optA{border-top:4px solid var(--pine)}
-  .optB{border-top:4px solid var(--water)}
-  .optC{border-top:4px solid var(--gold)}
+  .optlabel{display:inline-flex;align-items:center;gap:7px;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;border-radius:7px;padding:4px 10px;margin-bottom:8px}
+  .optA .optlabel{background:var(--rec)}
+  .optB .optlabel{background:var(--gold)}
+  .recpill{background:rgba(255,255,255,.25);border-radius:5px;padding:2px 7px}
+  .optA{border-top:4px solid var(--rec)}
+  .optB{border-top:4px solid var(--gold)}
   .opt h2{margin:2px 0 3px;font-size:1.3rem;color:var(--pine)}
   .opt .tagline{margin:0 0 6px;color:var(--granite);font-size:.92rem}
   .tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
   .tag{font-size:.74rem;font-weight:600;border-radius:7px;padding:3px 9px;background:#eef1ec;color:#3a4a40}
   .tag.water{background:#e1eef5;color:#1f5a7a}
   .tag.gold{background:#fbe6d2;color:#9a5a12}
+  .tag.rec{background:#e3f1e8;color:#1f7a43}
   .steps{margin:14px 0 0;padding-left:0;list-style:none}
   .steps li{position:relative;padding:0 0 14px 24px;border-left:2px solid var(--line);margin-left:7px}
   .steps li:last-child{padding-bottom:0;border-left-color:transparent}
   .steps li .sd{position:absolute;left:-8px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid #fff}
-  .optB .steps li .sd{background:var(--water)}
+  .optA .steps li .sd{background:var(--rec)}
   .steps li b{color:var(--pine)}
   .safety{background:#fbe6d2;color:#7a3f0a;border-radius:10px;padding:11px 13px;margin:14px 0 0;font-size:.9rem}
   .safety b{color:#7a3f0a}
+  .parknote{background:#f0f5f1;color:var(--pine);border-radius:10px;padding:11px 13px;margin:14px 0 0;font-size:.9rem}
   .maplinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
   .maplink{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:var(--pine);color:#fff;border-radius:10px;padding:9px 13px;font-size:.85rem;font-weight:600}
-  .optB .maplink{background:var(--water)}
   .maplink:active{opacity:.85}
-  /* Swipe gallery */
   .media{position:relative}
   .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   .gallery::-webkit-scrollbar{display:none}
@@ -111,9 +106,9 @@
 </head>
 <body>
 <header class="hero">
-  <div class="eyebrow">Half-Day Yosemite · Pick One</div>
-  <h1>Three Ways to Spend the Afternoon</h1>
-  <p>Iconic views · a swimming day · or an easy valley afternoon</p>
+  <div class="eyebrow">Half-Day Yosemite · From Mariposa</div>
+  <h1>Your Yosemite Afternoon</h1>
+  <p>A recommended views-plus-swim plan, an easy valley pivot</p>
 </header>
 
 <div class="wrap">
@@ -126,31 +121,30 @@
   <!-- Intro -->
   <div class="box accent">
     <h2>🌲 How to use this</h2>
-    <p>We reach the Valley around <strong>midday</strong>, the whole crew is mobile (our friend with the sprained ankle is staying back), and one of us is keen to <strong>swim</strong>. Here are <strong>three full-afternoon plans</strong> — you won't do all of them.</p>
-    <p class="keypoint">👉 <strong>Pick one on the day</strong>, based on energy and mood. Each plan ends with Tunnel View if the timing's right.</p>
+    <p>We start from <strong>Mariposa</strong>, reach the Valley around <strong>midday</strong>, the whole crew is mobile (our friend with the sprained ankle is staying back), and one of us wants to <strong>swim</strong>. We want an early SF departure tomorrow.</p>
+    <p class="keypoint">👉 <strong>Option A is the recommended plan</strong> — views <em>and</em> a river dip. <strong>Option B</strong> is the easy pivot if energy's low when we arrive. There's also one lake we considered and are saving for next time.</p>
   </div>
 
   <!-- Jump nav -->
   <nav class="jump" aria-label="Jump to a section">
-    <a class="primary" href="#options">↓ The 3 plans</a>
+    <a class="primary" href="#a">✓ Plan A (recommended)</a>
+    <a href="#b">🌳 Plan B (easy)</a>
     <a href="#compare">⚖️ Compare</a>
-    <a href="#a">🏔️ A · Views</a>
-    <a href="#b">🏊 B · Swim</a>
-    <a href="#c">🌳 C · Easy Valley</a>
+    <a href="#tenaya">🏊 Why not Tenaya?</a>
     <a href="#tomorrow">🗓️ Tomorrow</a>
   </nav>
 
-  <!-- Compare options -->
-  <h2 id="compare" class="sectionhead">⚖️ Compare the three</h2>
+  <!-- Compare -->
+  <h2 id="compare" class="sectionhead">⚖️ Compare</h2>
   <div class="table-scroll">
     <table class="compare">
       <thead>
-        <tr><th>Plan</th><th>Vibe</th><th>Driving</th><th>Swim?</th><th>Effort</th></tr>
+        <tr><th>Plan</th><th>Vibe</th><th>Driving</th><th>Swim?</th><th>When</th></tr>
       </thead>
       <tbody>
-        <tr><td class="optname">A · Glacier Pt Rd</td><td>Iconic views</td><td>~45–60 min up</td><td>No</td><td>Drive-ups + optional hike</td></tr>
-        <tr><td class="optname">B · Tioga / Tenaya</td><td>Swimming day</td><td>~1.5 hr each way</td><td>Yes — best swim</td><td>Low (no hike)</td></tr>
-        <tr><td class="optname">C · Easy Valley</td><td>Low-key + river dip</td><td>None big</td><td>Yes — cool dips</td><td>Lowest</td></tr>
+        <tr><td class="optname">A · GP Rd + beach</td><td>Views + a dip</td><td>~45–60 min up</td><td>Yes — Merced dip</td><td>✓ Recommended</td></tr>
+        <tr><td class="optname">B · Easy Valley</td><td>Low-key + river dip</td><td>None big</td><td>Yes — Merced dip</td><td>If energy's low</td></tr>
+        <tr><td class="optname">Tenaya Lake</td><td>Best true swim</td><td>~2.5 hr each way</td><td>Yes — best</td><td>Saving for next trip</td></tr>
       </tbody>
     </table>
   </div>
@@ -159,7 +153,7 @@
   <!-- Preferences -->
   <section class="box prefs" aria-label="Your preferences">
     <h2>🎚️ Not sure? Tap your vibe</h2>
-    <p class="hint">A nudge toward a plan — all three stay on the table.</p>
+    <p class="hint">A nudge between the two plans — both stay on the table.</p>
     <div class="pref-group">
       <div class="pref-label">Energy level</div>
       <div class="chips" id="energy" role="group" aria-label="Energy level">
@@ -176,18 +170,18 @@
         <button class="chip" data-val="least-walking" aria-pressed="false">🚗 Least effort</button>
       </div>
     </div>
-    <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll nudge you toward a plan.</span></div>
+    <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll nudge you toward A or B.</span></div>
   </section>
 
-  <h2 id="options" class="sectionhead">🗺️ The three plans</h2>
+  <h2 id="plans" class="sectionhead">🗺️ The plans</h2>
   <p style="margin:0 0 4px;font-size:.86rem;color:var(--granite)">Swipe each photo strip; tap a pin to navigate.</p>
 
   <!-- OPTION A -->
   <article class="opt optA" id="a">
     <div class="media">
       <div class="gallery">
+        <img loading="lazy" src="photos/cathedral-beach.jpg" alt="Sandy Merced River beach with calm shallows (Cathedral Beach)" />
         <img loading="lazy" src="photos/glacier-point.jpg" alt="Glacier Point panorama over Yosemite Valley toward Half Dome at sunset" />
-        <img loading="lazy" src="photos/glacier-point-halfdome.jpg" alt="Half Dome from Glacier Point" />
         <img loading="lazy" src="photos/washburn-pano.jpg" alt="Washburn Point panorama with Half Dome" />
         <img loading="lazy" src="photos/sentinel-dome-view.jpg" alt="Half Dome and Yosemite Valley from Sentinel Dome" />
         <img loading="lazy" src="photos/taft-fissures.jpg" alt="The fissures at Taft Point" />
@@ -195,22 +189,28 @@
       </div>
     </div>
     <div class="body">
-      <span class="optlabel">Option A</span>
-      <h2>Glacier Point Road</h2>
-      <p class="tagline">The iconic-views afternoon — drive-up panoramas plus an optional hike.</p>
-      <div class="tags"><span class="tag">🚗 ~45–60 min up</span><span class="tag">🏔️ Big views</span><span class="tag gold">🥾 Optional hike</span></div>
+      <span class="optlabel">Option A <span class="recpill">✓ Recommended</span></span>
+      <h2>Glacier Point Road + a Sentinel Beach dip</h2>
+      <p class="tagline">Both worlds — a cold river swim <em>and</em> the iconic high viewpoints.</p>
+      <div class="tags"><span class="tag rec">🏔️ Views</span><span class="tag water">🏊 River dip</span><span class="tag">🚗 ~45–60 min up</span></div>
       <ol class="steps">
-        <li><span class="sd"></span><b>Valley quick stop</b> — Lodge or Village Store for restrooms, coffee, snacks before the climb.</li>
-        <li><span class="sd"></span><b>Drive up Glacier Point Rd</b> (~45–60 min, winding; open in 2026).</li>
-        <li><span class="sd"></span><b>Glacier Point + Washburn Point</b> — two drive-up viewpoints minutes apart; the headline panoramas of Half Dome and the Valley.</li>
-        <li><span class="sd"></span><b>Sentinel Dome / Taft Point trailhead — one trailhead, two trails:</b> stronger hikers take <b>Sentinel Dome</b> (~2.2 mi round trip, a short steep granite scramble to a 360° summit); others take <b>Taft Point</b> (~1.1 mi each way, flat, to the cliff-edge fissures). Regroup at the car.</li>
-        <li><span class="sd"></span><b>Tunnel View</b> on the golden-hour drive back down — the perfect closer.</li>
+        <li><span class="sd"></span><b>Arrive in the Valley around midday.</b></li>
+        <li><span class="sd"></span><b>Yosemite Valley gift shop</b> — give it proper time: souvenirs, postcards, a poster or two. (Gift shops at the Village Store and Yosemite Valley Lodge.)</li>
+        <li><span class="sd"></span><b>Cool off / picnic at Sentinel Beach Picnic Area</b> on the Merced — sandy beach, calm shallows, picnic tables, a cold snowmelt dip. <i>Cathedral Beach Picnic Area is a near alternative.</i></li>
+        <li><span class="sd"></span><b>Drive up Glacier Point Road</b> (~45–60 min, winding).</li>
+        <li><span class="sd"></span><b>Glacier Point + Washburn Point</b> — drive-up viewpoints minutes apart; banked regardless of how trailhead parking goes.</li>
+        <li><span class="sd"></span><b>Sentinel Dome / Taft Point trailhead — one trailhead, two trails:</b> park once. Stronger hikers take <b>Sentinel Dome</b> (~2.2 mi round trip, ~400 ft gain, a short steep granite scramble at the top to a 360° summit); others take <b>Taft Point</b> (~1.1 mi each way, flat, to the fissures and clifftop). Regroup at the car.</li>
+        <li><span class="sd"></span><b>Tunnel View</b> on the golden-hour drive back down.</li>
       </ol>
-      <p class="safety" style="background:#f0f5f1;color:var(--pine)">🅿️ <b>Parking:</b> the small trailhead lot fills fast — <b>midday is the worst window</b>, but it eases by mid-afternoon. If it's full, use the roadside overflow and walk in.</p>
+      <p class="parknote">🅿️ <b>Parking:</b> the small trailhead lot fills fast — <b>midday is the worst window, but it eases by mid-afternoon</b> (about when you'll have driven up). If it's full, use the roadside overflow within walking distance — don't circle.</p>
+      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. Stay in the calm shallows at the beach areas; never swim near or above waterfalls.</p>
       <div class="maplinks">
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Yosemite+Valley+Gift+Shop+Yosemite" target="_blank" rel="noopener">📍 Gift shop</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sentinel+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Sentinel Beach</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Cathedral+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Cathedral Beach</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Glacier+Point+Yosemite" target="_blank" rel="noopener">📍 Glacier Point</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Washburn+Point+Yosemite" target="_blank" rel="noopener">📍 Washburn Point</a>
-        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Taft+Point+Trailhead+Yosemite" target="_blank" rel="noopener">📍 Sentinel Dome / Taft Pt trailhead</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sentinel+Dome+Taft+Point+Trailhead+Yosemite" target="_blank" rel="noopener">📍 Sentinel Dome / Taft Pt trailhead</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tunnel+View+Yosemite" target="_blank" rel="noopener">📍 Tunnel View</a>
       </div>
     </div>
@@ -220,53 +220,28 @@
   <article class="opt optB" id="b">
     <div class="media">
       <div class="gallery">
-        <img loading="lazy" src="photos/tenaya-lake.jpg" alt="Crystal-clear Tenaya Lake along Tioga Road" />
-        <img loading="lazy" src="photos/olmsted-point.jpg" alt="View from Olmsted Point toward Half Dome and Tenaya Canyon" />
+        <img loading="lazy" src="photos/mirror-lake-1.jpg" alt="Mirror Lake reflecting the granite cliffs" />
+        <img loading="lazy" src="photos/cathedral-beach.jpg" alt="Sandy Merced River beach with calm shallows" />
+        <img loading="lazy" src="photos/yosemite-falls.jpg" alt="Yosemite Falls reflected in the Merced River" />
+        <img loading="lazy" src="photos/valley-halfdome.jpg" alt="Half Dome above the eastern Yosemite Valley" />
+        <img loading="lazy" src="photos/mirror-lake-2.jpg" alt="Still water at Mirror Lake" />
       </div>
     </div>
     <div class="body">
       <span class="optlabel">Option B</span>
-      <h2>Tioga Road &amp; Tenaya Lake</h2>
-      <p class="tagline">The swimming day — the pick if a real swim is the priority. Skip Glacier Point.</p>
-      <div class="tags"><span class="tag water">🏊 Best swim</span><span class="tag">🚗 ~1.5 hr each way</span><span class="tag water">🙂 Low effort</span></div>
-      <ol class="steps">
-        <li><span class="sd"></span><b>Drive Tioga Rd</b> (~1.5 hrs each way from the Valley). It's open for 2026 and usually <b>less crowded</b> than the Valley or Glacier Point — which helps with a midday start.</li>
-        <li><span class="sd"></span><b>Olmsted Point</b> — easy roadside stop: Half Dome seen from the back, plus a short trail beyond the lot if you want to stretch.</li>
-        <li><span class="sd"></span><b>Tenaya Lake</b> — a crystal-clear alpine lake right off the road. Park and walk to the sandy shore (no hike), calm water with no current — genuinely swimmable, but <b>cold</b> (it sits at ~8,150 ft).</li>
-      </ol>
-      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. <b>Tenaya Lake is calmer (no current) and the safer, best true swim;</b> the Valley's Merced beaches are for cooler dips. Never swim near or above waterfalls.</p>
-      <p class="keypoint" style="margin-top:12px">🚻 Heads-up: some Tioga Rd facilities/restrooms may still be limited — check before relying on them, and bring water.</p>
-      <div class="maplinks">
-        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Olmsted+Point+Yosemite" target="_blank" rel="noopener">📍 Olmsted Point</a>
-        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tenaya+Lake+Yosemite" target="_blank" rel="noopener">📍 Tenaya Lake</a>
-      </div>
-    </div>
-  </article>
-
-  <!-- OPTION C -->
-  <article class="opt optC" id="c">
-    <div class="media">
-      <div class="gallery">
-        <img loading="lazy" src="photos/cathedral-beach.jpg" alt="Sandy Cathedral Beach on the Merced River with reflections" />
-        <img loading="lazy" src="photos/mirror-lake-1.jpg" alt="Mirror Lake reflecting the granite cliffs" />
-        <img loading="lazy" src="photos/mirror-lake-2.jpg" alt="Still water at Mirror Lake" />
-        <img loading="lazy" src="photos/yosemite-falls.jpg" alt="Yosemite Falls reflected in the Merced River" />
-        <img loading="lazy" src="photos/valley-halfdome.jpg" alt="Half Dome above the eastern Yosemite Valley" />
-      </div>
-    </div>
-    <div class="body">
-      <span class="optlabel">Option C</span>
       <h2>Easy Valley Afternoon</h2>
-      <p class="tagline">Low effort, no big mountain drive — and a river dip to cool off.</p>
-      <div class="tags"><span class="tag gold">🌳 Lowest effort</span><span class="tag water">🏊 River dips</span><span class="tag">🚗 No big drive</span></div>
+      <p class="tagline">The pivot if energy's low on arrival — no big climb, just an easy day with a dip.</p>
+      <div class="tags"><span class="tag gold">🌳 Lowest effort</span><span class="tag water">🏊 River dip</span><span class="tag">🚗 No big drive</span></div>
       <ol class="steps">
-        <li><span class="sd"></span><b>Village Store + a meadow stroll</b> — souvenirs, picnic supplies, and flat valley-floor wandering with cliffs all around.</li>
-        <li><span class="sd"></span><b>Mirror Lake</b> (optional) — a flat ~2 mi round trip from Curry Village to calm, still water. <b>Can you swim?</b> Yes — no current, fine for a cold wade or dip in early summer while it's holding water (it can shrink to a shallow pond later in the season).</li>
-        <li><span class="sd"></span><b>Cool off at the river beaches</b> — Sentinel Beach or Cathedral Beach Picnic Areas: sandy Merced River stretches with calm shallows, good for wading and a dip.</li>
+        <li><span class="sd"></span><b>Yosemite Valley gift shop</b> — take your time browsing the Village Store and Lodge gift shops for souvenirs.</li>
+        <li><span class="sd"></span><b>Meadow stroll</b> — flat valley-floor wandering with the cliffs all around.</li>
+        <li><span class="sd"></span><b>Mirror Lake</b> (optional) — a flat ~2 mi round trip from Curry Village to calm, still water. Fine for a cold wade or dip while it's holding water in early summer (it can shrink to a shallow pond later).</li>
+        <li><span class="sd"></span><b>Cool off at Sentinel or Cathedral Beach</b> — sandy Merced River stretches with calm shallows.</li>
         <li><span class="sd"></span><b>Tunnel View</b> fits neatly on the way in or out.</li>
       </ol>
-      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. In the Valley, <b>stay in the calm shallows at the beach areas</b>; avoid anywhere the current is moving, and <b>never swim near or above waterfalls</b>. (For a proper swim, Tenaya Lake in Option B is calmer and best.)</p>
+      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. Stay in the calm shallows at the beach areas; never swim near or above waterfalls.</p>
       <div class="maplinks">
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Yosemite+Valley+Gift+Shop+Yosemite" target="_blank" rel="noopener">📍 Gift shop</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Village+Store+Yosemite" target="_blank" rel="noopener">📍 Village Store</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Mirror+Lake+Yosemite" target="_blank" rel="noopener">📍 Mirror Lake</a>
         <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sentinel+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Sentinel Beach</a>
@@ -276,12 +251,34 @@
     </div>
   </article>
 
+  <!-- Considered: Tenaya -->
+  <article class="opt" id="tenaya" style="border-top:4px solid var(--water)">
+    <div class="media">
+      <div class="gallery">
+        <img loading="lazy" src="photos/tenaya-lake.jpg" alt="Crystal-clear Tenaya Lake along Tioga Road" />
+        <img loading="lazy" src="photos/olmsted-point.jpg" alt="View from Olmsted Point toward Half Dome and Tenaya Canyon" />
+      </div>
+    </div>
+    <div class="body">
+      <span class="optlabel" style="background:var(--granite)">Considered — saving for next time</span>
+      <h2>Tenaya Lake (Tioga Road)</h2>
+      <p class="tagline">The one that got away — for now.</p>
+      <p>Tenaya Lake is a <strong>stunning crystal-clear alpine lake and the best true swimming spot in the park</strong> — calm water, a sandy shore, and no hike to reach it. We seriously considered it.</p>
+      <p>We're skipping it <strong>this</strong> trip because from Mariposa it's about <strong>2.5 hours each way (~5 hours round trip)</strong>. With a midday start and an early SF departure tomorrow, that turns into a driving-dominated day for a single swim. We're <strong>saving it for a future trip when we're staying inside the park.</strong></p>
+      <p class="keypoint">🏞️ <strong>Olmsted Point</strong> is the other classic Tioga Rd stop (Half Dome from the back) — a viewpoint, not a swim. Same reason it waits for next time.</p>
+      <div class="maplinks">
+        <a class="maplink" style="background:var(--water)" href="https://www.google.com/maps/search/?api=1&query=Tenaya+Lake+Yosemite" target="_blank" rel="noopener">📍 See Tenaya Lake</a>
+        <a class="maplink" style="background:var(--water)" href="https://www.google.com/maps/search/?api=1&query=Olmsted+Point+Yosemite" target="_blank" rel="noopener">📍 Olmsted Point</a>
+      </div>
+    </div>
+  </article>
+
   <!-- Tomorrow -->
   <details class="box accent" id="tomorrow">
     <summary><span class="sicon">🗓️</span><span class="stitle"><b>Tomorrow — the drive home</b><span class="tease">Why today carries the big stuff. Tap to expand.</span></span><span class="chev">›</span></summary>
     <div class="dbody">
       <p><strong>Mariposa → SF is ~3–3.5 hrs</strong> with traffic and a stop. Re-entering the park tomorrow is <strong>optional backtracking</strong> (the Valley is ~1h20 east of Mariposa, while SF is west), so <strong>today carries the big stuff</strong> and tomorrow is best kept as a clean midday departure.</p>
-      <p>If you do pop back in tomorrow, keep it to one quick thing — the Village Store or a short, flat Mirror Lake walk.</p>
+      <p>If you do pop back in tomorrow, keep it to one quick thing — the gift shop or a short, flat Mirror Lake walk.</p>
     </div>
   </details>
 
@@ -290,8 +287,8 @@
     <h2>🧭 A few planner notes</h2>
     <ul>
       <li><strong>Fuel up before the hills.</strong> No gas in Yosemite Valley — nearest is Crane Flat, El Portal, or Mariposa.</li>
-      <li><strong>Cell signal is patchy</strong> on Glacier Point Rd and Tioga Rd — screenshot directions and download an offline map first.</li>
-      <li><strong>Layers + water.</strong> Glacier Point Rd and Tenaya Lake are 7,000–8,000+ ft and run cooler than the Valley.</li>
+      <li><strong>Cell signal is patchy</strong> on Glacier Point Rd — screenshot directions and download an offline map first.</li>
+      <li><strong>Layers + water.</strong> Glacier Point Rd tops out around 7,000+ ft and runs cooler than the Valley.</li>
       <li><strong>Best light</strong> is late afternoon at Glacier Point / Washburn and at Tunnel View.</li>
     </ul>
   </div>
@@ -301,7 +298,7 @@
     <h4>Photo credits</h4>
     <p>
       Photos via <a href="https://commons.wikimedia.org/wiki/Category:Yosemite_National_Park" target="_blank" rel="noopener">Wikimedia Commons</a>, used under CC BY / CC BY-SA:
-      David Iliff (Glacier Point, Tunnel View) · Tuxyso (Half Dome from Glacier Point) · Sergei Mutovkin (Washburn Point) · Pimlico27 (Sentinel Dome view) · lamblukas (Taft Point fissures) · Dcrjsr (Olmsted Point) · James St. John (Tenaya Lake) · Todd Petrie (Cathedral Beach) · Urban~commonswiki &amp; Mike McBey (Mirror Lake) · Brocken Inaglory (Yosemite Falls) · Thomas Wolf (Half Dome over the Valley).
+      Todd Petrie (Merced beach) · David Iliff (Glacier Point, Tunnel View) · Sergei Mutovkin (Washburn Point) · Pimlico27 (Sentinel Dome view) · lamblukas (Taft Point fissures) · Urban~commonswiki &amp; Mike McBey (Mirror Lake) · Brocken Inaglory (Yosemite Falls) · Thomas Wolf (Half Dome over the Valley) · James St. John (Tenaya Lake) · Dcrjsr (Olmsted Point).
     </p>
     <p>Drive times and home-route estimates are rough — mountain roads are winding and Bay Area traffic varies. Not affiliated with the National Park Service. Have a great trip! 🌲</p>
   </footer>
@@ -310,21 +307,20 @@
 
 <script>
 (function(){
-  /* ---- Preferences → plan nudge ---- */
-  var STORE_KEY = "yosemite-prefs-v2";
+  var STORE_KEY = "yosemite-prefs-v3";
   var state = { energy:null, priority:null };
   try { var s = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
         state.energy = s.energy||null; state.priority = s.priority||null; } catch(e){}
 
   var energyTips = {
-    "chill":    "Chill day? Lean Option C (easy Valley) or B (Tenaya) — minimal walking either way.",
-    "moderate": "Moderate energy fits any of the three — Option A's drive-up viewpoints are easy, with a hike only if you want it.",
+    "chill":    "Chill on arrival? Option B keeps it flat and easy — and still gets you a river dip.",
+    "moderate": "Moderate energy suits Option A — the viewpoints are drive-ups, with a hike only if you want it.",
     "hike":     "Up for a hike? Option A is yours — Sentinel Dome and Taft Point share one trailhead."
   };
   var priorityTips = {
-    "views":         "Best views? Option A (Glacier Point Road) — Glacier + Washburn, capped by Tunnel View at golden hour.",
-    "swim":          "Swimming? Option B (Tenaya Lake) is the best true swim; Option C's Merced beaches are good for a cooler dip.",
-    "least-walking": "Least effort? Option C keeps it flat and low-key; Option B is also light on walking with a great swim."
+    "views":         "Best views? Option A — Glacier + Washburn Points, capped by Tunnel View at golden hour.",
+    "swim":          "Swimming? Both plans include a Merced beach dip. (Tenaya is the best true swim, but it's a ~5-hr round trip from Mariposa — saved for next time.)",
+    "least-walking": "Least effort? Option B — flat valley strolls and a beach dip, no big climb."
   };
 
   function render(){
@@ -333,7 +329,7 @@
     var el=document.getElementById("tip-text"), parts=[];
     if(state.priority) parts.push(priorityTips[state.priority]);
     if(state.energy)   parts.push(energyTips[state.energy]);
-    el.textContent = parts.length ? parts.join(" ") : "Tap your energy and priority above and I'll nudge you toward a plan.";
+    el.textContent = parts.length ? parts.join(" ") : "Tap your energy and priority above and I'll nudge you toward A or B.";
   }
   function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
   function wire(id,key){ document.getElementById(id).addEventListener("click",function(ev){
@@ -342,7 +338,6 @@
   }); }
   wire("energy","energy"); wire("priority","priority"); render();
 
-  /* ---- Swipe galleries ---- */
   document.querySelectorAll(".gallery").forEach(function(g){
     var n=g.children.length; if(n<2) return;
     var hint=document.createElement("div"); hint.className="swipe-hint"; hint.textContent="1 / "+n+"  ›  swipe";
