@@ -13,7 +13,7 @@
     --line:#e4dfd3; --shadow:0 2px 14px rgba(31,58,46,.10);
   }
   *{box-sizing:border-box}
-  html{-webkit-text-size-adjust:100%}
+  html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
   body{
     margin:0; font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
     color:var(--ink); background:var(--cream); -webkit-font-smoothing:antialiased;
@@ -41,6 +41,25 @@
   .keypoint{background:#f0f5f1;border-radius:10px;padding:11px 13px;margin:10px 0 0;font-size:.95rem;color:var(--pine)}
   .box ul{margin:8px 0 0;padding-left:20px}
   .box li{margin-bottom:6px}
+  /* Jump nav */
+  .jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
+  .jump a{text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:.85rem;color:var(--pine);font-weight:600;box-shadow:var(--shadow)}
+  .jump a:active{transform:scale(.97)}
+  .jump .primary{background:var(--pine);color:#fff;border-color:var(--pine)}
+  /* Collapsible logistics */
+  .logi-h{margin:24px 0 4px;color:var(--granite);font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px}
+  details.box{padding:0}
+  details.box>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:11px}
+  details.box>summary::-webkit-details-marker{display:none}
+  summary .sicon{font-size:1.15rem;flex:0 0 auto}
+  summary .stitle{display:flex;flex-direction:column;min-width:0}
+  summary .stitle b{color:var(--pine);font-size:1rem}
+  summary .tease{font-weight:400;font-size:.82rem;color:var(--granite);margin-top:2px}
+  summary .chev{margin-left:auto;flex:0 0 auto;color:var(--granite);font-size:1.3rem;transition:transform .2s}
+  details.box[open]>summary .chev{transform:rotate(90deg)}
+  .dbody{padding:0 16px 16px}
+  .dbody>:first-child{margin-top:0}
+  [id]{scroll-margin-top:14px}
   /* Comparison table */
   .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff}
   table.compare{border-collapse:collapse;width:100%;min-width:540px;font-size:.86rem}
@@ -111,44 +130,64 @@
   <div class="notice">
     🚦 <strong>Live traffic:</strong> Text <a href="sms:333111?&body=ynptraffic">ynptraffic to 333111</a> for real-time park traffic conditions.
   </div>
-  <div class="notice">
-    🎟️ <strong>Entrance pass required</strong> — card or mobile payment only; no entry reservation needed in 2026.
-  </div>
+
+  <!-- Jump nav -->
+  <nav class="jump" aria-label="Jump to a section">
+    <a class="primary" href="#stops">🗺️ The stops</a>
+    <a href="#compare">⚖️ Compare</a>
+    <a href="#plan">🗓️ Today or tomorrow?</a>
+    <a href="#drive">🚗 Getting home</a>
+  </nav>
+
+  <p class="logi-h">📋 Before you go — tap to expand</p>
 
   <!-- Today vs Tomorrow framing -->
-  <div class="box accent">
-    <h2>🗓️ Today vs. tomorrow — do the good stuff <em>today</em></h2>
-    <p>We leave around <strong>midday tomorrow</strong> and want an <strong>early-ish SF arrival</strong>. Mariposa is already on the westward side toward SF, so re-entering the park tomorrow means <strong>backtracking</strong> — roughly <strong>2.5–3 extra hours</strong> of driving in the wrong direction before we even start home.</p>
-    <p class="keypoint">👉 The play: <strong>knock out everything below today.</strong> Make tomorrow a clean Mariposa departure.</p>
-    <p style="margin-top:12px">Re-entering tomorrow is <strong>optional</strong> and only really worth it for one quick thing on the way out:</p>
+  <details class="box accent" id="plan">
+    <summary><span class="sicon">🗓️</span><span class="stitle"><b>Today vs. tomorrow</b><span class="tease">Should we re-enter the park tomorrow? The trade-off + timing.</span></span><span class="chev">›</span></summary>
+    <div class="dbody">
+    <p>The Valley sits about <strong>1h20 east of Mariposa</strong> while SF is west, so a re-entry is a real out-and-back spur — but the numbers are friendlier than "don't bother":</p>
+    <ul>
+      <li><strong>Drive in:</strong> ~1h20 to the Valley.</li>
+      <li><strong>Valley → SF:</strong> ~3.5–4 hrs (3.5 is doable with light traffic — the route home runs back through Mariposa anyway).</li>
+      <li><strong>vs. a clean Mariposa departure:</strong> ~2h47–3 hrs straight to SF.</li>
+    </ul>
+    <p>So re-entering adds roughly <strong>~2 hrs of driving plus your park time</strong> to the day — not a half-day detour.</p>
+    <p class="keypoint">👉 The catch is <strong>timing, not distance</strong>: a re-entry only keeps an early-ish SF arrival if you go in <strong>early</strong> tomorrow and leave the Valley by late morning. Prefer to leave Mariposa at midday? Then do everything today instead.</p>
+    <p style="margin-top:12px">If you do pop in, keep it to one quick thing:</p>
     <ul>
       <li><strong>Village Store</strong> for souvenirs, or</li>
       <li>An easy <strong>Mirror Lake</strong> stroll (see the optional valley stop below).</li>
     </ul>
-  </div>
+    </div>
+  </details>
 
   <!-- Drive home to SF with buffers -->
-  <div class="box warm">
-    <h2>🚗 The drive home to SF — pad the estimate</h2>
+  <details class="box warm" id="drive">
+    <summary><span class="sicon">🚗</span><span class="stitle"><b>The drive home to SF</b><span class="tease">Real timing, fuel before the city, downtown Avis return.</span></span><span class="chev">›</span></summary>
+    <div class="dbody">
     <p>Maps will say <strong>Mariposa → SF ≈ 2h47</strong>. That's the no-traffic, no-stops number. Don't plan on it.</p>
     <p class="keypoint">👉 Budget <strong>3.5–4 hours door-to-door</strong> once you add a fuel stop, a food/bathroom break, and Bay Area afternoon traffic (the Altamont/I-580 stretch and the bridge approach are the usual snarls).</p>
     <p style="margin-top:12px"><strong>Returning the rental (downtown Avis, Howard St / SoMa):</strong> most companies want it back <strong>full</strong> or charge a steep per-gallon fee — and downtown SF gas stations are scarce, pricey, and a pain to reach in traffic. <strong>Don't plan to fuel in the city.</strong> Fill the tank in the <strong>East Bay before the Bay Bridge</strong> (Livermore / Dublin / Pleasanton off I-580, or Tracy a little earlier) — that's your last easy, cheap fill-up.</p>
-    <p><strong>Good food + bathroom + fuel stops</strong> on the way: Mariposa (before you leave the hills), then <strong>Oakdale or Manteca/Tracy</strong> on the CA-99 → I-580 corridor (fast food, clean restrooms, gas), with a final fuel option around <strong>Livermore/Dublin</strong> before the bridge.</p>
+    <p><strong>Good food + bathroom + fuel stops</strong> on the way: Mariposa (before you leave the hills), then <strong>Merced</strong> (where CA-140 meets CA-99), and <strong>Manteca / Tracy / Livermore / Dublin</strong> along the I-580 corridor — fast food, clean restrooms, gas. (If Maps routes you via <strong>Pacheco Pass / CA-152 → US-101</strong> instead, Los Banos and Gilroy are the stops.) Top up the tank around <strong>Livermore/Dublin</strong> before the bridge.</p>
+    <p><strong>🍔 Road food (a fun excuse to stop):</strong> <strong>In-N-Out</strong> is the California must-try — order it "Animal Style" (Merced, Manteca, Tracy, Livermore and Dublin all have one, roughly on-route). Other cult US picks along the way: <strong>Raising Cane's</strong> (chicken fingers), <strong>Popeyes</strong> (the chicken sandwich), <strong>Jack in the Box</strong> (CA original, late-night tacos), <strong>Del Taco</strong>/<strong>Taco Bell</strong>, and <strong>Dutch Bros</strong> for over-the-top drive-thru coffee. Want a sit-down diner? <strong>Denny's</strong> or <strong>IHOP</strong> — grab a Grand Slam or a stack of pancakes.</p>
     <p><strong>Buffer for the return:</strong> this is a <em>downtown</em> drop-off, not the airport — no return shuttle, and SoMa adds one-way streets, traffic, and a garage entrance to find. Downtown branches also keep <strong>shorter hours</strong> than the airport (often closing early evening, reduced on weekends), so <strong>check your location's closing time</strong> and aim to arrive <strong>~30 min early</strong>. Leaving Mariposa ~midday → realistic SoMa arrival mid-to-late afternoon.</p>
     <p style="margin-top:8px"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Avis+Howard+Street+San+Francisco" target="_blank" rel="noopener" style="font-size:.86rem;padding:8px 13px">📍 Avis drop-off (Howard St) in Maps</a></p>
-  </div>
+    </div>
+  </details>
 
   <!-- Keeping the group together -->
-  <div class="box accent">
-    <h2>🤝 Keeping the group together</h2>
+  <details class="box accent" id="group">
+    <summary><span class="sicon">🤝</span><span class="stitle"><b>Keeping the group together</b><span class="tease">Same-destination plan + sprained-ankle options.</span></span><span class="chev">›</span></summary>
+    <div class="dbody">
     <p class="sub">We want to minimize splitting up — and one of us has a sprained ankle.</p>
     <p>The approach: pick stops where <strong>everyone goes to the same place</strong>, then people choose <strong>different-difficulty options once there</strong>. Nobody's left behind, nobody's forced up a trail.</p>
     <p>The clearest example is the <strong>Sentinel Dome / Taft Point trailhead</strong>: the whole group parks together, stronger walkers head to Taft Point (~1.1 mi each way) or Sentinel Dome, while tired or sore folks do a short flat out-and-back on the same trail or relax near the cars. Same lot, same area, no real separation.</p>
     <p class="keypoint">🦶 <strong>Sprained ankle:</strong> every stop below has a flat/short option flagged. The drive-up viewpoints (Tunnel View, Washburn) need zero walking; Glacier Point is short and paved; skip only the full Taft Point hike.</p>
-  </div>
+    </div>
+  </details>
 
   <!-- Compare at a glance -->
-  <h2 style="margin:26px 0 8px;color:var(--pine);font-size:1.12rem">⚖️ Compare the stops at a glance</h2>
+  <h2 id="compare" style="margin:26px 0 8px;color:var(--pine);font-size:1.12rem">⚖️ Compare the stops at a glance</h2>
   <div class="table-scroll">
     <table class="compare">
       <thead>
@@ -160,7 +199,7 @@
         <tr><td class="stopname">Tunnel View</td><td>Drive-up</td><td>5 min</td><td class="ank-ok">Easy</td><td>The iconic valley photo</td></tr>
         <tr><td class="stopname">Glacier Point</td><td>Short paved walk</td><td>~20 min</td><td class="ank-ok">Gentle</td><td>The big panorama + Half Dome</td></tr>
         <tr><td class="stopname">Washburn Point</td><td>Drive-up</td><td>5 min</td><td class="ank-ok">Easy</td><td>Half Dome straight-on, no walking</td></tr>
-        <tr><td class="stopname">Taft Point</td><td>Hike</td><td>~2.2 mi · ~1.5 hr</td><td class="ank-warn">Shorter option</td><td>Clifftop fissures + the thrill</td></tr>
+        <tr><td class="stopname">Taft Point</td><td>Hike</td><td>~2.2 mi · ~1.5 hr</td><td class="ank-warn">Sit out the hike</td><td>Clifftop fissures + the thrill</td></tr>
       </tbody>
     </table>
   </div>
@@ -188,6 +227,9 @@
     </div>
     <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll add a quick tip. The route stays the same either way.</span></div>
   </section>
+
+  <h2 id="stops" style="margin:28px 0 2px;color:var(--pine);font-size:1.18rem">🗺️ The stops</h2>
+  <p style="margin:0 0 4px;font-size:.86rem;color:var(--granite)">In driving order — swipe each photo strip, tap a pin to navigate.</p>
 
   <!-- Stop 1: Valley Lodge -->
   <article class="stop">
@@ -299,7 +341,7 @@
     <div class="body">
       <span class="drive">≈ 10 min drive from Washburn Pt to the trailhead</span>
       <h3><span class="num">5</span>Taft Point</h3>
-      <div class="tags"><span class="tag hike">🥾 Hike</span><span class="tag">~1.1 mi each way</span><span class="tag warn">🦶 Shorter option at trailhead</span></div>
+      <div class="tags"><span class="tag hike">🥾 Hike</span><span class="tag">~1.1 mi each way</span><span class="tag warn">🦶 Bad ankle: sit it out</span></div>
       <p>From the Sentinel Dome / Taft Point trailhead it's about <strong>1.1 mi each way</strong> to a thrilling clifftop with the famous fissures and a guardrail over a sheer drop. Huge payoff, but it's a real walk.</p>
       <div class="anklenote">
         <b>⚠️ Parking caveat:</b> the easy ~1.1 mi version is <b>only</b> from the <b>Sentinel Dome / Taft Point trailhead lot</b> — <b>not</b> by hiking from Glacier Point (that's a separate ~9 mi route people confuse it with). The small trailhead lot fills fast; arriving <b>~2–3pm</b> improves your odds of a real spot vs. a long roadside walk-in.<br><br>
