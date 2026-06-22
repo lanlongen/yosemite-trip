@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Half-Day Yosemite — Trip Planner</title>
+<meta name="description" content="A friendly half-day driving route through Yosemite: the Valley, Tunnel View, and Glacier Point Road." />
+<meta name="theme-color" content="#1f3a2e" />
+<style>
+  :root{
+    --pine:#1f3a2e; --pine-2:#2f5c45; --granite:#5b6b73;
+    --gold:#d98a2b; --cream:#f6f3ec; --card:#ffffff; --ink:#1c2420;
+    --line:#e4dfd3; --shadow:0 2px 14px rgba(31,58,46,.10);
+  }
+  *{box-sizing:border-box}
+  html{-webkit-text-size-adjust:100%}
+  body{
+    margin:0; font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+    color:var(--ink); background:var(--cream);
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:var(--pine-2)}
+  .wrap{max-width:680px;margin:0 auto;padding:0 16px env(safe-area-inset-bottom)}
+  /* Hero */
+  header.hero{
+    background:linear-gradient(160deg,var(--pine),var(--pine-2));
+    color:#fff;padding:34px 16px 30px;text-align:center;
+  }
+  header.hero h1{margin:0 0 6px;font-size:1.7rem;letter-spacing:.2px}
+  header.hero p{margin:0;opacity:.9;font-size:1rem}
+  .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.8;margin-bottom:8px}
+  /* Notices */
+  .notice{
+    background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);
+    border-radius:12px;padding:13px 15px;margin:16px 0;box-shadow:var(--shadow);font-size:.95rem;
+  }
+  .notice strong{color:var(--pine)}
+  .notice a{font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold)}
+  .notice + .notice{margin-top:10px}
+  /* Preferences */
+  .prefs{
+    background:#fff;border:1px solid var(--line);border-radius:14px;
+    padding:16px;margin:18px 0;box-shadow:var(--shadow);
+  }
+  .prefs h2{margin:0 0 4px;font-size:1.05rem;color:var(--pine)}
+  .prefs .hint{margin:0 0 14px;font-size:.85rem;color:var(--granite)}
+  .pref-group{margin-bottom:14px}
+  .pref-group:last-of-type{margin-bottom:0}
+  .pref-label{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--granite);margin-bottom:7px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{
+    appearance:none;cursor:pointer;border:1.5px solid var(--line);background:#fbfaf6;
+    color:var(--ink);border-radius:999px;padding:9px 15px;font-size:.92rem;
+    transition:all .15s ease;
+  }
+  .chip:active{transform:scale(.97)}
+  .chip[aria-pressed="true"]{
+    background:var(--pine);border-color:var(--pine);color:#fff;font-weight:600;
+  }
+  .tip{
+    margin-top:15px;padding:12px 14px;background:#f0f5f1;border-radius:10px;
+    font-size:.95rem;color:var(--pine);display:flex;gap:9px;align-items:flex-start;
+  }
+  .tip .dot{flex:0 0 auto;margin-top:2px}
+  /* Section leg banner */
+  .leg{
+    margin:26px 0 6px;padding:11px 15px;border-radius:12px;
+    background:linear-gradient(120deg,var(--pine-2),var(--gold));
+    color:#fff;font-weight:600;
+  }
+  .leg small{display:block;font-weight:400;opacity:.92;font-size:.85rem;margin-top:2px}
+  /* Stop cards */
+  .stop{
+    background:var(--card);border:1px solid var(--line);border-radius:16px;
+    overflow:hidden;margin:14px 0;box-shadow:var(--shadow);
+  }
+  .stop img{display:block;width:100%;height:200px;object-fit:cover;background:#e9e5da}
+  .stop .body{padding:15px 16px 17px}
+  .stop .drive{
+    display:inline-block;font-size:.78rem;letter-spacing:.3px;color:var(--gold);
+    font-weight:700;text-transform:uppercase;margin-bottom:5px;
+  }
+  .stop h3{margin:0 0 7px;font-size:1.18rem;color:var(--pine)}
+  .stop p{margin:0 0 13px;color:#34433b}
+  .stop .badge{
+    display:inline-block;font-size:.75rem;background:#fbe6d2;color:#9a5a12;
+    border-radius:6px;padding:3px 8px;margin:0 0 11px;font-weight:600;
+  }
+  .maplink{
+    display:inline-flex;align-items:center;gap:7px;text-decoration:none;
+    background:var(--pine);color:#fff;border-radius:10px;padding:10px 15px;
+    font-size:.92rem;font-weight:600;
+  }
+  .maplink:active{opacity:.85}
+  .num{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:23px;height:23px;border-radius:50%;background:var(--gold);color:#fff;
+    font-size:.8rem;font-weight:700;margin-right:7px;vertical-align:2px;
+  }
+  footer{
+    margin:30px 0 40px;padding-top:18px;border-top:1px solid var(--line);
+    font-size:.78rem;color:var(--granite);line-height:1.5;
+  }
+  footer a{color:var(--granite)}
+  footer h4{margin:0 0 6px;font-size:.8rem;color:var(--pine);text-transform:uppercase;letter-spacing:1px}
+</style>
+</head>
+<body>
+<header class="hero">
+  <div class="eyebrow">Half-Day Itinerary</div>
+  <h1>Yosemite in an Afternoon</h1>
+  <p>The Valley floor → Tunnel View → Glacier Point Road</p>
+</header>
+
+<div class="wrap">
+
+  <!-- Live conditions -->
+  <div class="notice">
+    🚦 <strong>Live traffic:</strong> Text <a href="sms:333111?&body=ynptraffic">ynptraffic to 333111</a> for real-time park traffic conditions.
+  </div>
+  <div class="notice">
+    🎟️ <strong>Entrance pass required</strong> — card or mobile payment only; no entry reservation needed in 2026.
+  </div>
+
+  <!-- Preferences -->
+  <section class="prefs" aria-label="Your preferences">
+    <h2>Tune it to your group</h2>
+    <p class="hint">Tap your vibe — every stop stays on the list, you'll just get a tailored tip.</p>
+
+    <div class="pref-group">
+      <div class="pref-label">Energy level</div>
+      <div class="chips" id="energy" role="group" aria-label="Energy level">
+        <button class="chip" data-val="chill" aria-pressed="false">😌 Chill</button>
+        <button class="chip" data-val="moderate" aria-pressed="false">🙂 Moderate</button>
+        <button class="chip" data-val="hike" aria-pressed="false">🥾 Up for a hike</button>
+      </div>
+    </div>
+
+    <div class="pref-group">
+      <div class="pref-label">Priority</div>
+      <div class="chips" id="priority" role="group" aria-label="Priority">
+        <button class="chip" data-val="views" aria-pressed="false">🏔️ Best views</button>
+        <button class="chip" data-val="least-walking" aria-pressed="false">🚗 Least walking</button>
+        <button class="chip" data-val="photos" aria-pressed="false">📸 Photo spots</button>
+      </div>
+    </div>
+
+    <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll add a quick tip. The route stays the same either way.</span></div>
+  </section>
+
+  <!-- Stop 1 -->
+  <article class="stop">
+    <img loading="lazy"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/El_Capitan_3.jpg/960px-El_Capitan_3.jpg"
+      alt="El Capitan rising above the Yosemite Valley floor" width="960" height="200" />
+    <div class="body">
+      <span class="drive">Starting point · your base in the Valley</span>
+      <h3><span class="num">1</span>Yosemite Valley Lodge</h3>
+      <p>Kick off in the Valley with a driving break — gift shop, restrooms, and coffee before the climb. El Capitan towers right overhead. Stretch your legs, top up snacks, then point the car toward Wawona Road.</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Yosemite+Valley+Lodge+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </div>
+  </article>
+
+  <!-- Stop 2 -->
+  <article class="stop">
+    <img loading="lazy"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/13/Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg/960px-Tunnel_View%2C_Yosemite_Valley%2C_Yosemite_NP_-_Diliff.jpg"
+      alt="The classic Tunnel View of Yosemite Valley with El Capitan, Bridalveil Fall and Half Dome" width="960" height="200" />
+    <div class="body">
+      <span class="drive">≈ 10 min from the Lodge</span>
+      <h3><span class="num">2</span>Tunnel View</h3>
+      <p>The postcard shot of Yosemite — El Capitan, Bridalveil Fall, and Half Dome framed in one sweep, straight from the car park. A quick drive-up viewpoint you can hit on the way <em>up</em> to Glacier Point or save for the drive back down.</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tunnel+View+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </div>
+  </article>
+
+  <!-- Glacier Point Road leg -->
+  <div class="leg">
+    🛣️ Glacier Point Road leg
+    <small>≈ 45–60 min up a winding mountain road — the next three stops are all up here, close together.</small>
+  </div>
+
+  <!-- Stop 3 -->
+  <article class="stop">
+    <img loading="lazy"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/21/Glacier_Point_at_Sunset%2C_Yosemite_NP%2C_CA%2C_US_-_Diliff.jpg/960px-Glacier_Point_at_Sunset%2C_Yosemite_NP%2C_CA%2C_US_-_Diliff.jpg"
+      alt="Sweeping view from Glacier Point over Yosemite Valley toward Half Dome at sunset" width="960" height="200" />
+    <div class="body">
+      <span class="drive">≈ 50 min from Tunnel View (up Glacier Point Rd)</span>
+      <h3><span class="num">3</span>Glacier Point</h3>
+      <p>The big one. A short paved walk (~20 min round trip) opens onto a jaw-dropping panorama of Half Dome, the Valley floor far below, and the high country beyond. Easy underfoot and worth every step.</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Glacier+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </div>
+  </article>
+
+  <!-- Stop 4 -->
+  <article class="stop">
+    <img loading="lazy"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/d6/Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg/960px-Half_Dome_from_Glacier_Point%2C_Yosemite_NP_-_Diliff.jpg"
+      alt="Half Dome seen from the Glacier Point Road area" width="960" height="200" />
+    <div class="body">
+      <span class="drive">≈ 5 min from Glacier Point (just back down the road)</span>
+      <h3><span class="num">4</span>Washburn Point</h3>
+      <p>A drive-up viewpoint a minute below Glacier Point, with arguably the best straight-on profile of Half Dome and a peek at the Merced River's waterfalls. No walking required — pull over, look up, snap away.</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Washburn+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </div>
+  </article>
+
+  <!-- Stop 5 -->
+  <article class="stop">
+    <img loading="lazy"
+      src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/66/Taft_Point_Panorama.jpg/960px-Taft_Point_Panorama.jpg"
+      alt="The dramatic clifftop panorama and fissures at Taft Point" width="960" height="200" />
+    <div class="body">
+      <span class="drive">≈ 10 min drive from Washburn Pt to the trailhead</span>
+      <span class="badge">🥾 For the fit hiker</span>
+      <h3><span class="num">5</span>Taft Point</h3>
+      <p>From the Sentinel Dome / Taft Point trailhead it's about <strong>1.1 mi each way</strong> to a thrilling clifftop with the famous fissures and a guardrail over a sheer drop. The payoff is huge, but it's a real walk — best for the hikers in the group.</p>
+      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Taft+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+    </div>
+  </article>
+
+  <!-- Footer / attribution -->
+  <footer>
+    <h4>Photo credits</h4>
+    <p>
+      Images via Wikimedia Commons, used under their respective licenses:
+      <a href="https://commons.wikimedia.org/wiki/File:El_Capitan_3.jpg" target="_blank" rel="noopener">El Capitan</a> (U.S. Geological Survey, CC BY 2.0) ·
+      <a href="https://commons.wikimedia.org/wiki/File:Tunnel_View,_Yosemite_Valley,_Yosemite_NP_-_Diliff.jpg" target="_blank" rel="noopener">Tunnel View</a> (David Iliff, CC BY-SA 3.0) ·
+      <a href="https://commons.wikimedia.org/wiki/File:Glacier_Point_at_Sunset,_Yosemite_NP,_CA,_US_-_Diliff.jpg" target="_blank" rel="noopener">Glacier Point</a> (David Iliff, CC BY-SA 3.0) ·
+      <a href="https://commons.wikimedia.org/wiki/File:Half_Dome_from_Glacier_Point,_Yosemite_NP_-_Diliff.jpg" target="_blank" rel="noopener">Half Dome from Glacier Point</a> (David Iliff, CC BY-SA 3.0) ·
+      <a href="https://commons.wikimedia.org/wiki/File:Taft_Point_Panorama.jpg" target="_blank" rel="noopener">Taft Point</a> (Dave, CC BY 2.0).
+    </p>
+    <p>Drive times are rough estimates — Glacier Point Road is winding and traffic varies. Not affiliated with the National Park Service. Have a great trip! 🌲</p>
+  </footer>
+
+</div>
+
+<script>
+(function(){
+  var STORE_KEY = "yosemite-prefs-v1";
+  var state = { energy:null, priority:null };
+
+  try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+        state.energy = saved.energy || null; state.priority = saved.priority || null; } catch(e){}
+
+  var energyTips = {
+    "chill":     "Keeping it relaxed? Every stop but Taft Point is a quick step from the car.",
+    "moderate":  "Good middle ground — you'll enjoy the short Glacier Point stroll, and Taft Point is there if you want more.",
+    "hike":      "Up for a hike? Make Taft Point the highlight — that 1.1 mi each-way trail is the one to do."
+  };
+  var priorityTips = {
+    "views":         "Best views? Glacier Point and Washburn Point are the showstoppers — don't skip the short walk at Glacier Point.",
+    "least-walking": "Least walking? Taft Point is optional — the drive-up viewpoints (Tunnel View, Washburn) cover you, and Glacier Point is only a short paved stroll.",
+    "photos":        "Photo spots? Tunnel View at the start and the Glacier Point railing are the classic frames — aim for late afternoon light."
+  };
+
+  function render(){
+    document.querySelectorAll("#energy .chip").forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.val === state.energy ? "true" : "false");
+    });
+    document.querySelectorAll("#priority .chip").forEach(function(b){
+      b.setAttribute("aria-pressed", b.dataset.val === state.priority ? "true" : "false");
+    });
+
+    var el = document.getElementById("tip-text");
+    var parts = [];
+    if (state.priority) parts.push(priorityTips[state.priority]);
+    if (state.energy)   parts.push(energyTips[state.energy]);
+
+    if (parts.length === 0){
+      el.textContent = "Tap your energy and priority above and I'll add a quick tip. The route stays the same either way.";
+    } else {
+      el.textContent = parts.join(" ");
+    }
+  }
+
+  function save(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
+
+  function wire(groupId, key){
+    document.getElementById(groupId).addEventListener("click", function(ev){
+      var btn = ev.target.closest(".chip"); if(!btn) return;
+      state[key] = (state[key] === btn.dataset.val) ? null : btn.dataset.val; // tap again to clear
+      save(); render();
+    });
+  }
+  wire("energy","energy");
+  wire("priority","priority");
+  render();
+})();
+</script>
+</body>
+</html>
