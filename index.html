@@ -3,51 +3,96 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Half-Day Yosemite — Trip Planner</title>
-<meta name="description" content="A friendly half-day driving route through Yosemite: the Valley, Tunnel View, and Glacier Point Road — built to help the group decide together." />
+<title>Yosemite Afternoon — Pick Your Plan</title>
+<meta name="description" content="Three ways to spend a half-day in Yosemite — iconic views, a swimming day, or an easy valley afternoon. Pick one on the day." />
 <meta name="theme-color" content="#1f3a2e" />
 <style>
   :root{
-    --pine:#1f3a2e; --pine-2:#2f5c45; --granite:#5b6b73;
+    --pine:#1f3a2e; --pine-2:#2f5c45; --granite:#5b6b73; --water:#2f6b8f;
     --gold:#d98a2b; --cream:#f6f3ec; --card:#ffffff; --ink:#1c2420;
     --line:#e4dfd3; --shadow:0 2px 14px rgba(31,58,46,.10);
   }
   *{box-sizing:border-box}
   html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
-  body{
-    margin:0; font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
-    color:var(--ink); background:var(--cream); -webkit-font-smoothing:antialiased;
-  }
+  body{margin:0;font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--cream);-webkit-font-smoothing:antialiased}
   a{color:var(--pine-2)}
   .wrap{max-width:680px;margin:0 auto;padding:0 16px env(safe-area-inset-bottom)}
-  /* Hero */
   header.hero{background:linear-gradient(160deg,var(--pine),var(--pine-2));color:#fff;padding:34px 16px 30px;text-align:center}
   header.hero h1{margin:0 0 6px;font-size:1.7rem;letter-spacing:.2px}
   header.hero p{margin:0;opacity:.9;font-size:1rem}
   .eyebrow{text-transform:uppercase;letter-spacing:2px;font-size:.72rem;opacity:.8;margin-bottom:8px}
-  /* Notices */
   .notice{background:#fff;border:1px solid var(--line);border-left:4px solid var(--gold);border-radius:12px;padding:13px 15px;margin:16px 0;box-shadow:var(--shadow);font-size:.95rem}
   .notice strong{color:var(--pine)}
   .notice a{font-weight:600;text-decoration:none;border-bottom:1px solid var(--gold)}
-  .notice + .notice{margin-top:10px}
-  /* Info boxes (framing / logistics) */
   .box{background:#fff;border:1px solid var(--line);border-radius:14px;padding:16px;margin:18px 0;box-shadow:var(--shadow)}
-  .box h2{margin:0 0 4px;font-size:1.08rem;color:var(--pine);display:flex;align-items:center;gap:8px}
+  .box h2{margin:0 0 4px;font-size:1.08rem;color:var(--pine)}
   .box .sub{margin:0 0 12px;font-size:.85rem;color:var(--granite)}
-  .box p{margin:0 0 10px}
-  .box p:last-child{margin-bottom:0}
+  .box p{margin:0 0 10px}.box p:last-child{margin-bottom:0}
   .box.accent{border-left:4px solid var(--pine-2)}
-  .box.warm{border-left:4px solid var(--gold)}
   .keypoint{background:#f0f5f1;border-radius:10px;padding:11px 13px;margin:10px 0 0;font-size:.95rem;color:var(--pine)}
-  .box ul{margin:8px 0 0;padding-left:20px}
-  .box li{margin-bottom:6px}
+  .box ul{margin:8px 0 0;padding-left:20px}.box li{margin-bottom:6px}
   /* Jump nav */
   .jump{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0 4px}
   .jump a{text-decoration:none;background:#fff;border:1px solid var(--line);border-radius:999px;padding:8px 13px;font-size:.85rem;color:var(--pine);font-weight:600;box-shadow:var(--shadow)}
   .jump a:active{transform:scale(.97)}
   .jump .primary{background:var(--pine);color:#fff;border-color:var(--pine)}
-  /* Collapsible logistics */
-  .logi-h{margin:24px 0 4px;color:var(--granite);font-size:.78rem;text-transform:uppercase;letter-spacing:1.5px}
+  /* Compare table */
+  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff}
+  table.compare{border-collapse:collapse;width:100%;min-width:520px;font-size:.86rem}
+  table.compare th,table.compare td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
+  table.compare thead th{background:var(--pine);color:#fff;font-weight:600}
+  table.compare tbody tr:last-child td{border-bottom:none}
+  table.compare td.optname{font-weight:700;color:var(--pine);white-space:nowrap}
+  .scroll-hint{font-size:.78rem;color:var(--granite);margin:6px 2px 0}
+  /* Preferences */
+  .prefs h2{margin:0 0 4px;font-size:1.05rem;color:var(--pine)}
+  .prefs .hint{margin:0 0 14px;font-size:.85rem;color:var(--granite)}
+  .pref-group{margin-bottom:14px}.pref-group:last-of-type{margin-bottom:0}
+  .pref-label{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--granite);margin-bottom:7px}
+  .chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{appearance:none;cursor:pointer;border:1.5px solid var(--line);background:#fbfaf6;color:var(--ink);border-radius:999px;padding:9px 15px;font-size:.92rem;transition:all .15s ease}
+  .chip:active{transform:scale(.97)}
+  .chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff;font-weight:600}
+  .tip{margin-top:15px;padding:12px 14px;background:#f0f5f1;border-radius:10px;font-size:.95rem;color:var(--pine);display:flex;gap:9px;align-items:flex-start}
+  .tip .dot{flex:0 0 auto;margin-top:2px}
+  /* Option cards */
+  .opt{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:16px 0;box-shadow:var(--shadow);scroll-margin-top:12px}
+  .opt .body{padding:15px 16px 18px}
+  .optlabel{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#fff;border-radius:7px;padding:4px 10px;margin-bottom:8px}
+  .optA .optlabel{background:var(--pine)}
+  .optB .optlabel{background:var(--water)}
+  .optC .optlabel{background:var(--gold)}
+  .optA{border-top:4px solid var(--pine)}
+  .optB{border-top:4px solid var(--water)}
+  .optC{border-top:4px solid var(--gold)}
+  .opt h2{margin:2px 0 3px;font-size:1.3rem;color:var(--pine)}
+  .opt .tagline{margin:0 0 6px;color:var(--granite);font-size:.92rem}
+  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0 0}
+  .tag{font-size:.74rem;font-weight:600;border-radius:7px;padding:3px 9px;background:#eef1ec;color:#3a4a40}
+  .tag.water{background:#e1eef5;color:#1f5a7a}
+  .tag.gold{background:#fbe6d2;color:#9a5a12}
+  .steps{margin:14px 0 0;padding-left:0;list-style:none}
+  .steps li{position:relative;padding:0 0 14px 24px;border-left:2px solid var(--line);margin-left:7px}
+  .steps li:last-child{padding-bottom:0;border-left-color:transparent}
+  .steps li .sd{position:absolute;left:-8px;top:3px;width:13px;height:13px;border-radius:50%;background:var(--gold);border:2px solid #fff}
+  .optB .steps li .sd{background:var(--water)}
+  .steps li b{color:var(--pine)}
+  .safety{background:#fbe6d2;color:#7a3f0a;border-radius:10px;padding:11px 13px;margin:14px 0 0;font-size:.9rem}
+  .safety b{color:#7a3f0a}
+  .maplinks{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+  .maplink{display:inline-flex;align-items:center;gap:6px;text-decoration:none;background:var(--pine);color:#fff;border-radius:10px;padding:9px 13px;font-size:.85rem;font-weight:600}
+  .optB .maplink{background:var(--water)}
+  .maplink:active{opacity:.85}
+  /* Swipe gallery */
+  .media{position:relative}
+  .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  .gallery::-webkit-scrollbar{display:none}
+  .gallery img{flex:0 0 100%;scroll-snap-align:center;width:100%;height:215px;object-fit:cover;background:#e9e5da;display:block}
+  .swipe-hint{position:absolute;top:9px;right:9px;background:rgba(28,36,32,.62);color:#fff;font-size:.72rem;padding:4px 9px;border-radius:999px;pointer-events:none}
+  .dots{display:flex;gap:6px;justify-content:center;padding:9px 0 0}
+  .dots span{width:7px;height:7px;border-radius:50%;background:var(--line)}
+  .dots span.on{background:var(--gold)}
+  .sectionhead{margin:30px 0 2px;color:var(--pine);font-size:1.2rem}
   details.box{padding:0}
   details.box>summary{list-style:none;cursor:pointer;padding:14px 16px;display:flex;align-items:center;gap:11px}
   details.box>summary::-webkit-details-marker{display:none}
@@ -57,71 +102,18 @@
   summary .tease{font-weight:400;font-size:.82rem;color:var(--granite);margin-top:2px}
   summary .chev{margin-left:auto;flex:0 0 auto;color:var(--granite);font-size:1.3rem;transition:transform .2s}
   details.box[open]>summary .chev{transform:rotate(90deg)}
-  .dbody{padding:0 16px 16px}
-  .dbody>:first-child{margin-top:0}
-  [id]{scroll-margin-top:14px}
-  /* Comparison table */
-  .table-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);background:#fff}
-  table.compare{border-collapse:collapse;width:100%;min-width:540px;font-size:.86rem}
-  table.compare th,table.compare td{padding:10px 12px;text-align:left;border-bottom:1px solid var(--line);vertical-align:top}
-  table.compare thead th{background:var(--pine);color:#fff;font-weight:600;position:sticky;top:0}
-  table.compare tbody tr:last-child td{border-bottom:none}
-  table.compare td.stopname{font-weight:600;color:var(--pine);white-space:nowrap}
-  .ank-ok{color:#1f7a43;font-weight:600}
-  .ank-warn{color:#9a5a12;font-weight:600}
-  .scroll-hint{font-size:.78rem;color:var(--granite);margin:6px 2px 0}
-  /* Preferences */
-  .prefs h2{margin:0 0 4px;font-size:1.05rem;color:var(--pine)}
-  .prefs .hint{margin:0 0 14px;font-size:.85rem;color:var(--granite)}
-  .pref-group{margin-bottom:14px}
-  .pref-group:last-of-type{margin-bottom:0}
-  .pref-label{font-size:.78rem;text-transform:uppercase;letter-spacing:1px;color:var(--granite);margin-bottom:7px}
-  .chips{display:flex;flex-wrap:wrap;gap:8px}
-  .chip{appearance:none;cursor:pointer;border:1.5px solid var(--line);background:#fbfaf6;color:var(--ink);border-radius:999px;padding:9px 15px;font-size:.92rem;transition:all .15s ease}
-  .chip:active{transform:scale(.97)}
-  .chip[aria-pressed="true"]{background:var(--pine);border-color:var(--pine);color:#fff;font-weight:600}
-  .tip{margin-top:15px;padding:12px 14px;background:#f0f5f1;border-radius:10px;font-size:.95rem;color:var(--pine);display:flex;gap:9px;align-items:flex-start}
-  .tip .dot{flex:0 0 auto;margin-top:2px}
-  /* Section leg banner */
-  .leg{margin:26px 0 6px;padding:11px 15px;border-radius:12px;background:linear-gradient(120deg,var(--pine-2),var(--gold));color:#fff;font-weight:600}
-  .leg small{display:block;font-weight:400;opacity:.92;font-size:.85rem;margin-top:2px}
-  /* Stop cards */
-  .stop{background:var(--card);border:1px solid var(--line);border-radius:16px;overflow:hidden;margin:14px 0;box-shadow:var(--shadow)}
-  .stop.optional{border-style:dashed}
-  /* Swipe gallery */
-  .gallery{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;scrollbar-width:none}
-  .gallery::-webkit-scrollbar{display:none}
-  .gallery img{flex:0 0 100%;scroll-snap-align:center;width:100%;height:215px;object-fit:cover;background:#e9e5da;display:block}
-  .media{position:relative}
-  .swipe-hint{position:absolute;top:9px;right:9px;background:rgba(28,36,32,.62);color:#fff;font-size:.72rem;padding:4px 9px;border-radius:999px;backdrop-filter:blur(2px);pointer-events:none}
-  .dots{display:flex;gap:6px;justify-content:center;padding:9px 0 3px}
-  .dots span{width:7px;height:7px;border-radius:50%;background:var(--line)}
-  .dots span.on{background:var(--gold)}
-  .stop .body{padding:14px 16px 17px}
-  .stop .drive{display:inline-block;font-size:.78rem;letter-spacing:.3px;color:var(--gold);font-weight:700;text-transform:uppercase;margin-bottom:5px}
-  .stop h3{margin:0 0 9px;font-size:1.18rem;color:var(--pine)}
-  .stop p{margin:0 0 12px;color:#34433b}
-  .tags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 11px}
-  .tag{font-size:.74rem;font-weight:600;border-radius:7px;padding:3px 9px;background:#eef1ec;color:#3a4a40}
-  .tag.hike{background:#fbe6d2;color:#9a5a12}
-  .tag.ok{background:#e3f1e8;color:#1f7a43}
-  .tag.warn{background:#fbe6d2;color:#9a5a12}
-  .anklenote{font-size:.86rem;background:#f7f1e8;border-radius:8px;padding:9px 11px;margin:0 0 12px;color:#5a4a2e}
-  .anklenote b{color:#9a5a12}
-  .maplink{display:inline-flex;align-items:center;gap:7px;text-decoration:none;background:var(--pine);color:#fff;border-radius:10px;padding:10px 15px;font-size:.92rem;font-weight:600}
-  .maplink:active{opacity:.85}
-  .num{display:inline-flex;align-items:center;justify-content:center;width:23px;height:23px;border-radius:50%;background:var(--gold);color:#fff;font-size:.8rem;font-weight:700;margin-right:7px;vertical-align:2px}
-  .num.opt{background:var(--granite)}
+  .dbody{padding:0 16px 16px}.dbody>:first-child{margin-top:0}
   footer{margin:30px 0 40px;padding-top:18px;border-top:1px solid var(--line);font-size:.78rem;color:var(--granite);line-height:1.5}
   footer a{color:var(--granite)}
   footer h4{margin:0 0 6px;font-size:.8rem;color:var(--pine);text-transform:uppercase;letter-spacing:1px}
+  [id]{scroll-margin-top:12px}
 </style>
 </head>
 <body>
 <header class="hero">
-  <div class="eyebrow">Half-Day Itinerary · Group Edition</div>
-  <h1>Yosemite in an Afternoon</h1>
-  <p>The Valley floor → Tunnel View → Glacier Point Road</p>
+  <div class="eyebrow">Half-Day Yosemite · Pick One</div>
+  <h1>Three Ways to Spend the Afternoon</h1>
+  <p>Iconic views · a swimming day · or an easy valley afternoon</p>
 </header>
 
 <div class="wrap">
@@ -131,76 +123,34 @@
     🚦 <strong>Live traffic:</strong> Text <a href="sms:333111?&body=ynptraffic">ynptraffic to 333111</a> for real-time park traffic conditions.
   </div>
 
+  <!-- Intro -->
+  <div class="box accent">
+    <h2>🌲 How to use this</h2>
+    <p>We reach the Valley around <strong>midday</strong>, the whole crew is mobile (our friend with the sprained ankle is staying back), and one of us is keen to <strong>swim</strong>. Here are <strong>three full-afternoon plans</strong> — you won't do all of them.</p>
+    <p class="keypoint">👉 <strong>Pick one on the day</strong>, based on energy and mood. Each plan ends with Tunnel View if the timing's right.</p>
+  </div>
+
   <!-- Jump nav -->
   <nav class="jump" aria-label="Jump to a section">
-    <a class="primary" href="#stops">🗺️ The stops</a>
+    <a class="primary" href="#options">↓ The 3 plans</a>
     <a href="#compare">⚖️ Compare</a>
-    <a href="#swim">💦 Swim</a>
-    <a href="#plan">🗓️ Today or tomorrow?</a>
-    <a href="#drive">🚗 Getting home</a>
+    <a href="#a">🏔️ A · Views</a>
+    <a href="#b">🏊 B · Swim</a>
+    <a href="#c">🌳 C · Easy Valley</a>
+    <a href="#tomorrow">🗓️ Tomorrow</a>
   </nav>
 
-  <p class="logi-h">📋 Before you go — tap to expand</p>
-
-  <!-- Today vs Tomorrow framing -->
-  <details class="box accent" id="plan">
-    <summary><span class="sicon">🗓️</span><span class="stitle"><b>Today vs. tomorrow</b><span class="tease">Should we re-enter the park tomorrow? The trade-off + timing.</span></span><span class="chev">›</span></summary>
-    <div class="dbody">
-    <p>The Valley sits about <strong>1h20 east of Mariposa</strong> while SF is west, so a re-entry is a real out-and-back spur — but the numbers are friendlier than "don't bother":</p>
-    <ul>
-      <li><strong>Drive in:</strong> ~1h20 to the Valley.</li>
-      <li><strong>Valley → SF:</strong> ~3.5–4 hrs (3.5 is doable with light traffic — the route home runs back through Mariposa anyway).</li>
-      <li><strong>vs. a clean Mariposa departure:</strong> ~2h47–3 hrs straight to SF.</li>
-    </ul>
-    <p>So re-entering adds roughly <strong>~2 hrs of driving plus your park time</strong> to the day — not a half-day detour.</p>
-    <p class="keypoint">👉 The catch is <strong>timing, not distance</strong>: a re-entry only keeps an early-ish SF arrival if you go in <strong>early</strong> tomorrow and leave the Valley by late morning. Prefer to leave Mariposa at midday? Then do everything today instead.</p>
-    <p style="margin-top:12px">If you do pop in, keep it to one quick thing:</p>
-    <ul>
-      <li><strong>Village Store</strong> for souvenirs, or</li>
-      <li>An easy <strong>Mirror Lake</strong> stroll (see the optional valley stop below).</li>
-    </ul>
-    </div>
-  </details>
-
-  <!-- Drive home to SF with buffers -->
-  <details class="box warm" id="drive">
-    <summary><span class="sicon">🚗</span><span class="stitle"><b>The drive home to SF</b><span class="tease">Real timing, fuel before the city, downtown Avis return.</span></span><span class="chev">›</span></summary>
-    <div class="dbody">
-    <p>Maps will say <strong>Mariposa → SF ≈ 2h47</strong>. That's the no-traffic, no-stops number. Don't plan on it.</p>
-    <p class="keypoint">👉 Budget <strong>3.5–4 hours door-to-door</strong> once you add a fuel stop, a food/bathroom break, and Bay Area afternoon traffic (the Altamont/I-580 stretch and the bridge approach are the usual snarls).</p>
-    <p style="margin-top:12px"><strong>Returning the rental (downtown Avis, Howard St / SoMa):</strong> most companies want it back <strong>full</strong> or charge a steep per-gallon fee — and downtown SF gas stations are scarce, pricey, and a pain to reach in traffic. <strong>Don't plan to fuel in the city.</strong> Fill the tank in the <strong>East Bay before the Bay Bridge</strong> (Livermore / Dublin / Pleasanton off I-580, or Tracy a little earlier) — that's your last easy, cheap fill-up.</p>
-    <p><strong>Good food + bathroom + fuel stops</strong> on the way: Mariposa (before you leave the hills), then <strong>Merced</strong> (where CA-140 meets CA-99), and <strong>Manteca / Tracy / Livermore / Dublin</strong> along the I-580 corridor — fast food, clean restrooms, gas. (If Maps routes you via <strong>Pacheco Pass / CA-152 → US-101</strong> instead, Los Banos and Gilroy are the stops.) Top up the tank around <strong>Livermore/Dublin</strong> before the bridge.</p>
-    <p><strong>🍔 Road food (a fun excuse to stop):</strong> <strong>In-N-Out</strong> is the California must-try — order it "Animal Style" (Merced, Manteca, Tracy, Livermore and Dublin all have one, roughly on-route). Other cult US picks along the way: <strong>Raising Cane's</strong> (chicken fingers), <strong>Popeyes</strong> (the chicken sandwich), <strong>Jack in the Box</strong> (CA original, late-night tacos), <strong>Del Taco</strong>/<strong>Taco Bell</strong>, and <strong>Dutch Bros</strong> for over-the-top drive-thru coffee. Want a sit-down diner? <strong>Denny's</strong> or <strong>IHOP</strong> — grab a Grand Slam or a stack of pancakes.</p>
-    <p><strong>Buffer for the return:</strong> this is a <em>downtown</em> drop-off, not the airport — no return shuttle, and SoMa adds one-way streets, traffic, and a garage entrance to find. Downtown branches also keep <strong>shorter hours</strong> than the airport (often closing early evening, reduced on weekends), so <strong>check your location's closing time</strong> and aim to arrive <strong>~30 min early</strong>. Leaving Mariposa ~midday → realistic SoMa arrival mid-to-late afternoon.</p>
-    <p style="margin-top:8px"><a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Avis+Howard+Street+San+Francisco" target="_blank" rel="noopener" style="font-size:.86rem;padding:8px 13px">📍 Avis drop-off (Howard St) in Maps</a></p>
-    </div>
-  </details>
-
-  <!-- Keeping the group together -->
-  <details class="box accent" id="group">
-    <summary><span class="sicon">🤝</span><span class="stitle"><b>Keeping the group together</b><span class="tease">Staying together when energy and interests differ.</span></span><span class="chev">›</span></summary>
-    <div class="dbody">
-    <p class="sub">Different energy levels, some want to swim, some want to hike — here's how we stay together.</p>
-    <p>Heads-up: our friend with the sprained ankle is <strong>sitting today out</strong>, so today's crew is all mobile — <strong>Taft Point and the hikes are fair game</strong> for everyone who's up for them.</p>
-    <p>Where energy or interests split (a swim vs. a hike), the trick is to <strong>pick one destination and choose different options once there</strong>. Best example: at the <strong>Sentinel Dome / Taft Point trailhead</strong> everyone parks together — stronger walkers do Taft Point (~1.1 mi each way) or Sentinel Dome, while others do a short flat out-and-back or relax by the cars. Same lot, no real separation.</p>
-    <p class="keypoint">🦶 The sprained ankle mainly matters for the <strong>optional valley visit tomorrow</strong> — and there the flat, easy options (Mirror Lake, the river beaches) have it covered.</p>
-    </div>
-  </details>
-
-  <!-- Compare at a glance -->
-  <h2 id="compare" style="margin:26px 0 8px;color:var(--pine);font-size:1.12rem">⚖️ Compare the stops at a glance</h2>
+  <!-- Compare options -->
+  <h2 id="compare" class="sectionhead">⚖️ Compare the three</h2>
   <div class="table-scroll">
     <table class="compare">
       <thead>
-        <tr><th>Stop</th><th>Effort</th><th>Round trip</th><th>🦶 Ankle</th><th>Why go</th></tr>
+        <tr><th>Plan</th><th>Vibe</th><th>Driving</th><th>Swim?</th><th>Effort</th></tr>
       </thead>
       <tbody>
-        <tr><td class="stopname">Valley Lodge</td><td>Drive-up + facilities</td><td>—</td><td class="ank-ok">Easy</td><td>Base, restrooms, El Cap overhead</td></tr>
-        <tr><td class="stopname">Mirror Lake <small>(opt)</small></td><td>Easy flat walk</td><td>~2 mi · ~1 hr</td><td class="ank-ok">Flat</td><td>Calmest, easiest "real" walk</td></tr>
-        <tr><td class="stopname">Tunnel View</td><td>Drive-up</td><td>5 min</td><td class="ank-ok">Easy</td><td>The iconic valley photo</td></tr>
-        <tr><td class="stopname">Glacier Point</td><td>Short paved walk</td><td>~20 min</td><td class="ank-ok">Gentle</td><td>The big panorama + Half Dome</td></tr>
-        <tr><td class="stopname">Washburn Point</td><td>Drive-up</td><td>5 min</td><td class="ank-ok">Easy</td><td>Half Dome straight-on, no walking</td></tr>
-        <tr><td class="stopname">Taft Point</td><td>Hike</td><td>~2.2 mi · ~1.5 hr</td><td class="ank-warn">Sit out the hike</td><td>Clifftop fissures + the thrill</td></tr>
+        <tr><td class="optname">A · Glacier Pt Rd</td><td>Iconic views</td><td>~45–60 min up</td><td>No</td><td>Drive-ups + optional hike</td></tr>
+        <tr><td class="optname">B · Tioga / Tenaya</td><td>Swimming day</td><td>~1.5 hr each way</td><td>Yes — best swim</td><td>Low (no hike)</td></tr>
+        <tr><td class="optname">C · Easy Valley</td><td>Low-key + river dip</td><td>None big</td><td>Yes — cool dips</td><td>Lowest</td></tr>
       </tbody>
     </table>
   </div>
@@ -208,8 +158,8 @@
 
   <!-- Preferences -->
   <section class="box prefs" aria-label="Your preferences">
-    <h2>🎚️ Tune it to your group</h2>
-    <p class="hint">Tap your vibe — every stop stays on the list, you'll just get a tailored tip.</p>
+    <h2>🎚️ Not sure? Tap your vibe</h2>
+    <p class="hint">A nudge toward a plan — all three stay on the table.</p>
     <div class="pref-group">
       <div class="pref-label">Energy level</div>
       <div class="chips" id="energy" role="group" aria-label="Energy level">
@@ -222,160 +172,127 @@
       <div class="pref-label">Priority</div>
       <div class="chips" id="priority" role="group" aria-label="Priority">
         <button class="chip" data-val="views" aria-pressed="false">🏔️ Best views</button>
-        <button class="chip" data-val="least-walking" aria-pressed="false">🚗 Least walking</button>
-        <button class="chip" data-val="photos" aria-pressed="false">📸 Photo spots</button>
+        <button class="chip" data-val="swim" aria-pressed="false">🏊 Swimming</button>
+        <button class="chip" data-val="least-walking" aria-pressed="false">🚗 Least effort</button>
       </div>
     </div>
-    <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll add a quick tip. The route stays the same either way.</span></div>
+    <div class="tip" id="tip"><span class="dot">💡</span><span id="tip-text">Tap your energy and priority above and I'll nudge you toward a plan.</span></div>
   </section>
 
-  <h2 id="stops" style="margin:28px 0 2px;color:var(--pine);font-size:1.18rem">🗺️ The stops</h2>
-  <p style="margin:0 0 4px;font-size:.86rem;color:var(--granite)">In driving order — swipe each photo strip, tap a pin to navigate.</p>
+  <h2 id="options" class="sectionhead">🗺️ The three plans</h2>
+  <p style="margin:0 0 4px;font-size:.86rem;color:var(--granite)">Swipe each photo strip; tap a pin to navigate.</p>
 
-  <!-- Stop 1: Valley Lodge -->
-  <article class="stop">
+  <!-- OPTION A -->
+  <article class="opt optA" id="a">
     <div class="media">
       <div class="gallery">
-        <img loading="lazy" src="photos/el-capitan.jpg" alt="El Capitan rising above the Yosemite Valley floor" />
-        <img loading="lazy" src="photos/valley-halfdome.jpg" alt="Half Dome above the eastern Yosemite Valley" />
-        <img loading="lazy" src="photos/yosemite-falls.jpg" alt="Yosemite Falls reflected in the Merced River" />
-      </div>
-    </div>
-    <div class="body">
-      <span class="drive">Starting point · your base in the Valley</span>
-      <h3><span class="num">1</span>Yosemite Valley Lodge</h3>
-      <div class="tags"><span class="tag">🚗 Drive-up</span><span class="tag">🚻 Restrooms</span><span class="tag ok">🦶 Easy</span></div>
-      <p>Kick off in the Valley — gift shop, restrooms, and coffee before the climb, with El Capitan towering overhead and Yosemite Falls a short stroll away. Stretch, top up snacks, then point the car toward Wawona Road.</p>
-      <div class="anklenote"><b>Sore ankle?</b> All flat and paved — no problem. A good spot to rest up before the viewpoints.</div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Yosemite+Valley+Lodge+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    </div>
-  </article>
-
-  <!-- Optional: Mirror Lake -->
-  <article class="stop optional">
-    <div class="media">
-      <div class="gallery">
-        <img loading="lazy" src="photos/mirror-lake-1.jpg" alt="Mirror Lake reflecting the cliffs in Yosemite Valley" />
-        <img loading="lazy" src="photos/mirror-lake-2.jpg" alt="Mirror Lake calm water and granite walls" />
-      </div>
-    </div>
-    <div class="body">
-      <span class="drive">Optional valley add-on · from Curry Village parking</span>
-      <h3><span class="num opt">+</span>Mirror Lake <small style="font-weight:400;color:var(--granite)">(optional)</small></h3>
-      <div class="tags"><span class="tag ok">🦶 Flat</span><span class="tag">~2 mi round trip</span><span class="tag">~100 ft gain</span></div>
-      <p>The easiest "real" walk of the day: a flat ~2 mi round trip from Curry Village to a calm lake that mirrors the surrounding granite. Great low-effort option for everyone — and the best candidate if we do a quick re-entry tomorrow.</p>
-      <div class="anklenote"><b>Sore ankle?</b> Flat and gentle, but 2 mi is still 2 mi — turn back whenever. Heads-up: by late summer the lake can shrink to a shallow pond.</div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Mirror+Lake+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    </div>
-  </article>
-
-  <!-- Stop 2: Tunnel View -->
-  <article class="stop">
-    <div class="media">
-      <div class="gallery">
-        <img loading="lazy" src="photos/tunnel-view.jpg" alt="The classic Tunnel View of Yosemite Valley with El Capitan, Bridalveil Fall and Half Dome" />
-        <img loading="lazy" src="photos/tunnel-view-winter.jpg" alt="Tunnel View at sunrise with snow" />
-      </div>
-    </div>
-    <div class="body">
-      <span class="drive">≈ 10 min from the Lodge</span>
-      <h3><span class="num">2</span>Tunnel View</h3>
-      <div class="tags"><span class="tag">🚗 Drive-up</span><span class="tag ok">🦶 Easy</span><span class="tag">📸 Iconic</span></div>
-      <p>The postcard shot of Yosemite — El Capitan, Bridalveil Fall, and Half Dome framed in one sweep, straight from the car park. Hit it on the way <em>up</em> to Glacier Point, or save it for the drive back down.</p>
-      <div class="anklenote"><b>Sore ankle?</b> Zero walking — the view is right at the lot.</div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tunnel+View+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    </div>
-  </article>
-
-  <!-- Glacier Point Road leg -->
-  <div class="leg">
-    🛣️ Glacier Point Road leg
-    <small>≈ 45–60 min up a winding mountain road — the next three stops are all up here, close together. (Road is seasonal; open in June.)</small>
-  </div>
-
-  <!-- Stop 3: Glacier Point -->
-  <article class="stop">
-    <div class="media">
-      <div class="gallery">
-        <img loading="lazy" src="photos/glacier-point.jpg" alt="Sweeping view from Glacier Point over Yosemite Valley toward Half Dome at sunset" />
-        <img loading="lazy" src="photos/glacier-point-pano.jpg" alt="Daytime panorama from Glacier Point over the valley" />
-        <img loading="lazy" src="photos/glacier-point-halfdome.jpg" alt="Half Dome seen from Glacier Point" />
-      </div>
-    </div>
-    <div class="body">
-      <span class="drive">≈ 50 min from Tunnel View (up Glacier Point Rd)</span>
-      <h3><span class="num">3</span>Glacier Point</h3>
-      <div class="tags"><span class="tag">🚶 Short paved walk</span><span class="tag">~20 min round trip</span><span class="tag ok">🦶 Gentle</span></div>
-      <p>The big one. A short paved walk (~20 min round trip) opens onto a jaw-dropping panorama of Half Dome, the Valley floor far below, and the high country beyond. Easy underfoot and worth every step — the must-do if you only pick one.</p>
-      <div class="anklenote"><b>Sore ankle?</b> Paved and gentle — fine taken slowly, with benches along the way. Skip it only if the ankle's really bad; the Washburn Point view (next) needs no walking.</div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Glacier+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
-    </div>
-  </article>
-
-  <!-- Stop 4: Washburn Point -->
-  <article class="stop">
-    <div class="media">
-      <div class="gallery">
-        <img loading="lazy" src="photos/washburn-half-dome.jpg" alt="Half Dome seen from the Glacier Point Road area" />
+        <img loading="lazy" src="photos/glacier-point.jpg" alt="Glacier Point panorama over Yosemite Valley toward Half Dome at sunset" />
+        <img loading="lazy" src="photos/glacier-point-halfdome.jpg" alt="Half Dome from Glacier Point" />
         <img loading="lazy" src="photos/washburn-pano.jpg" alt="Washburn Point panorama with Half Dome" />
+        <img loading="lazy" src="photos/sentinel-dome-view.jpg" alt="Half Dome and Yosemite Valley from Sentinel Dome" />
+        <img loading="lazy" src="photos/taft-fissures.jpg" alt="The fissures at Taft Point" />
+        <img loading="lazy" src="photos/tunnel-view.jpg" alt="The classic Tunnel View of Yosemite Valley" />
       </div>
     </div>
     <div class="body">
-      <span class="drive">≈ 5 min from Glacier Point (just back down the road)</span>
-      <h3><span class="num">4</span>Washburn Point</h3>
-      <div class="tags"><span class="tag">🚗 Drive-up</span><span class="tag ok">🦶 Easy</span><span class="tag">🏔️ Big view</span></div>
-      <p>A drive-up viewpoint a minute below Glacier Point, with arguably the best straight-on profile of Half Dome and a peek at the Merced River's waterfalls. No walking required — pull over, look up, snap away.</p>
-      <div class="anklenote"><b>Sore ankle?</b> Perfect — the whole view is a few steps from the car. The best "big payoff for zero effort" stop.</div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Washburn+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
+      <span class="optlabel">Option A</span>
+      <h2>Glacier Point Road</h2>
+      <p class="tagline">The iconic-views afternoon — drive-up panoramas plus an optional hike.</p>
+      <div class="tags"><span class="tag">🚗 ~45–60 min up</span><span class="tag">🏔️ Big views</span><span class="tag gold">🥾 Optional hike</span></div>
+      <ol class="steps">
+        <li><span class="sd"></span><b>Valley quick stop</b> — Lodge or Village Store for restrooms, coffee, snacks before the climb.</li>
+        <li><span class="sd"></span><b>Drive up Glacier Point Rd</b> (~45–60 min, winding; open in 2026).</li>
+        <li><span class="sd"></span><b>Glacier Point + Washburn Point</b> — two drive-up viewpoints minutes apart; the headline panoramas of Half Dome and the Valley.</li>
+        <li><span class="sd"></span><b>Sentinel Dome / Taft Point trailhead — one trailhead, two trails:</b> stronger hikers take <b>Sentinel Dome</b> (~2.2 mi round trip, a short steep granite scramble to a 360° summit); others take <b>Taft Point</b> (~1.1 mi each way, flat, to the cliff-edge fissures). Regroup at the car.</li>
+        <li><span class="sd"></span><b>Tunnel View</b> on the golden-hour drive back down — the perfect closer.</li>
+      </ol>
+      <p class="safety" style="background:#f0f5f1;color:var(--pine)">🅿️ <b>Parking:</b> the small trailhead lot fills fast — <b>midday is the worst window</b>, but it eases by mid-afternoon. If it's full, use the roadside overflow and walk in.</p>
+      <div class="maplinks">
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Glacier+Point+Yosemite" target="_blank" rel="noopener">📍 Glacier Point</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Washburn+Point+Yosemite" target="_blank" rel="noopener">📍 Washburn Point</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Taft+Point+Trailhead+Yosemite" target="_blank" rel="noopener">📍 Sentinel Dome / Taft Pt trailhead</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tunnel+View+Yosemite" target="_blank" rel="noopener">📍 Tunnel View</a>
+      </div>
     </div>
   </article>
 
-  <!-- Stop 5: Taft Point -->
-  <article class="stop">
+  <!-- OPTION B -->
+  <article class="opt optB" id="b">
     <div class="media">
       <div class="gallery">
-        <img loading="lazy" src="photos/taft-point.jpg" alt="The dramatic clifftop panorama at Taft Point" />
-        <img loading="lazy" src="photos/taft-fissures.jpg" alt="The deep fissures in the rock at Taft Point" />
-        <img loading="lazy" src="photos/taft-cliff.jpg" alt="The sheer cliff edge and railing at Taft Point" />
+        <img loading="lazy" src="photos/tenaya-lake.jpg" alt="Crystal-clear Tenaya Lake along Tioga Road" />
+        <img loading="lazy" src="photos/olmsted-point.jpg" alt="View from Olmsted Point toward Half Dome and Tenaya Canyon" />
       </div>
     </div>
     <div class="body">
-      <span class="drive">≈ 10 min drive from Washburn Pt to the trailhead</span>
-      <h3><span class="num">5</span>Taft Point</h3>
-      <div class="tags"><span class="tag hike">🥾 Hike</span><span class="tag">~1.1 mi each way</span><span class="tag warn">🦶 Bad ankle: sit it out</span></div>
-      <p>From the Sentinel Dome / Taft Point trailhead it's about <strong>1.1 mi each way</strong> to a thrilling clifftop with the famous fissures and a guardrail over a sheer drop. Huge payoff, but it's a real walk.</p>
-      <div class="anklenote">
-        <b>⚠️ Parking caveat:</b> the easy ~1.1 mi version is <b>only</b> from the <b>Sentinel Dome / Taft Point trailhead lot</b> — <b>not</b> by hiking from Glacier Point (that's a separate ~9 mi route people confuse it with). The small trailhead lot fills fast; arriving <b>~2–3pm</b> improves your odds of a real spot vs. a long roadside walk-in.<br><br>
-        <b>Sore ankle?</b> Skip the full hike — wait near the trailhead or do a short flat out-and-back on the same trail while the others go. Same parking, group stays together.
+      <span class="optlabel">Option B</span>
+      <h2>Tioga Road &amp; Tenaya Lake</h2>
+      <p class="tagline">The swimming day — the pick if a real swim is the priority. Skip Glacier Point.</p>
+      <div class="tags"><span class="tag water">🏊 Best swim</span><span class="tag">🚗 ~1.5 hr each way</span><span class="tag water">🙂 Low effort</span></div>
+      <ol class="steps">
+        <li><span class="sd"></span><b>Drive Tioga Rd</b> (~1.5 hrs each way from the Valley). It's open for 2026 and usually <b>less crowded</b> than the Valley or Glacier Point — which helps with a midday start.</li>
+        <li><span class="sd"></span><b>Olmsted Point</b> — easy roadside stop: Half Dome seen from the back, plus a short trail beyond the lot if you want to stretch.</li>
+        <li><span class="sd"></span><b>Tenaya Lake</b> — a crystal-clear alpine lake right off the road. Park and walk to the sandy shore (no hike), calm water with no current — genuinely swimmable, but <b>cold</b> (it sits at ~8,150 ft).</li>
+      </ol>
+      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. <b>Tenaya Lake is calmer (no current) and the safer, best true swim;</b> the Valley's Merced beaches are for cooler dips. Never swim near or above waterfalls.</p>
+      <p class="keypoint" style="margin-top:12px">🚻 Heads-up: some Tioga Rd facilities/restrooms may still be limited — check before relying on them, and bring water.</p>
+      <div class="maplinks">
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Olmsted+Point+Yosemite" target="_blank" rel="noopener">📍 Olmsted Point</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tenaya+Lake+Yosemite" target="_blank" rel="noopener">📍 Tenaya Lake</a>
       </div>
-      <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Taft+Point+Yosemite" target="_blank" rel="noopener">📍 Open in Google Maps</a>
     </div>
   </article>
 
-  <!-- Swimming / water -->
-  <h2 id="swim" style="margin:30px 0 2px;color:var(--pine);font-size:1.18rem">💦 Cooling off — river &amp; swim spots</h2>
-  <p style="margin:0 0 8px;font-size:.86rem;color:var(--granite)">For the swimmers — all in the Valley, easy to fold into the start of the day.</p>
-  <div class="box warm">
-    <p class="keypoint" style="background:#fbe6d2;color:#7a3f0a">⚠️ <strong>June water is snowmelt — cold, and the Merced runs faster and higher than it looks.</strong> Swim only in the calm shallows at the beach areas; avoid anywhere the current is moving, and never swim near waterfalls or above them.</p>
-    <p style="margin-top:14px"><strong>🏖️ Sentinel Beach &amp; Cathedral Beach Picnic Areas</strong> — calm, sandy stretches of the Merced River where wading and swimming work well. Stay in the shallows near the beach.</p>
-    <p style="margin:8px 0 0;display:flex;gap:8px;flex-wrap:wrap">
-      <a class="maplink" style="font-size:.84rem;padding:8px 13px" href="https://www.google.com/maps/search/?api=1&query=Sentinel+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Sentinel Beach</a>
-      <a class="maplink" style="font-size:.84rem;padding:8px 13px" href="https://www.google.com/maps/search/?api=1&query=Cathedral+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Cathedral Beach</a>
-    </p>
-    <p style="margin-top:14px"><strong>🪞 Mirror Lake</strong> — calmer, still water with no current; good for a cold dip in early summer while it's holding water (it can shrink to a shallow pond later in the season). It's the optional valley stop above, so you can pair the walk with a dip.</p>
-    <p style="margin-top:14px"><strong>🏞️ Tenaya Lake</strong> (Tioga Rd) is the park's best true swimming lake — but it's too far for today.</p>
-  </div>
+  <!-- OPTION C -->
+  <article class="opt optC" id="c">
+    <div class="media">
+      <div class="gallery">
+        <img loading="lazy" src="photos/cathedral-beach.jpg" alt="Sandy Cathedral Beach on the Merced River with reflections" />
+        <img loading="lazy" src="photos/mirror-lake-1.jpg" alt="Mirror Lake reflecting the granite cliffs" />
+        <img loading="lazy" src="photos/mirror-lake-2.jpg" alt="Still water at Mirror Lake" />
+        <img loading="lazy" src="photos/yosemite-falls.jpg" alt="Yosemite Falls reflected in the Merced River" />
+        <img loading="lazy" src="photos/valley-halfdome.jpg" alt="Half Dome above the eastern Yosemite Valley" />
+      </div>
+    </div>
+    <div class="body">
+      <span class="optlabel">Option C</span>
+      <h2>Easy Valley Afternoon</h2>
+      <p class="tagline">Low effort, no big mountain drive — and a river dip to cool off.</p>
+      <div class="tags"><span class="tag gold">🌳 Lowest effort</span><span class="tag water">🏊 River dips</span><span class="tag">🚗 No big drive</span></div>
+      <ol class="steps">
+        <li><span class="sd"></span><b>Village Store + a meadow stroll</b> — souvenirs, picnic supplies, and flat valley-floor wandering with cliffs all around.</li>
+        <li><span class="sd"></span><b>Mirror Lake</b> (optional) — a flat ~2 mi round trip from Curry Village to calm, still water. <b>Can you swim?</b> Yes — no current, fine for a cold wade or dip in early summer while it's holding water (it can shrink to a shallow pond later in the season).</li>
+        <li><span class="sd"></span><b>Cool off at the river beaches</b> — Sentinel Beach or Cathedral Beach Picnic Areas: sandy Merced River stretches with calm shallows, good for wading and a dip.</li>
+        <li><span class="sd"></span><b>Tunnel View</b> fits neatly on the way in or out.</li>
+      </ol>
+      <p class="safety">⚠️ <b>Water safety:</b> June water is snowmelt — cold, and the Merced runs faster and higher than it looks. In the Valley, <b>stay in the calm shallows at the beach areas</b>; avoid anywhere the current is moving, and <b>never swim near or above waterfalls</b>. (For a proper swim, Tenaya Lake in Option B is calmer and best.)</p>
+      <div class="maplinks">
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Village+Store+Yosemite" target="_blank" rel="noopener">📍 Village Store</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Mirror+Lake+Yosemite" target="_blank" rel="noopener">📍 Mirror Lake</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Sentinel+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Sentinel Beach</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Cathedral+Beach+Picnic+Area+Yosemite" target="_blank" rel="noopener">📍 Cathedral Beach</a>
+        <a class="maplink" href="https://www.google.com/maps/search/?api=1&query=Tunnel+View+Yosemite" target="_blank" rel="noopener">📍 Tunnel View</a>
+      </div>
+    </div>
+  </article>
 
-  <!-- Planner pro tips -->
+  <!-- Tomorrow -->
+  <details class="box accent" id="tomorrow">
+    <summary><span class="sicon">🗓️</span><span class="stitle"><b>Tomorrow — the drive home</b><span class="tease">Why today carries the big stuff. Tap to expand.</span></span><span class="chev">›</span></summary>
+    <div class="dbody">
+      <p><strong>Mariposa → SF is ~3–3.5 hrs</strong> with traffic and a stop. Re-entering the park tomorrow is <strong>optional backtracking</strong> (the Valley is ~1h20 east of Mariposa, while SF is west), so <strong>today carries the big stuff</strong> and tomorrow is best kept as a clean midday departure.</p>
+      <p>If you do pop back in tomorrow, keep it to one quick thing — the Village Store or a short, flat Mirror Lake walk.</p>
+    </div>
+  </details>
+
+  <!-- Planner notes -->
   <div class="box">
-    <h2>🌲 A few planner notes</h2>
+    <h2>🧭 A few planner notes</h2>
     <ul>
-      <li><strong>Glacier Point Road is the priority.</strong> Three of the best stops sit on it and it's a 45–60 min climb each way — go up once, hit all three, come down.</li>
-      <li><strong>Best light</strong> is late afternoon at Glacier Point / Washburn; midday is fine for the valley shots.</li>
-      <li><strong>Fuel up before the hills.</strong> No gas in Yosemite Valley — nearest is Crane Flat, El Portal, or back in Mariposa.</li>
-      <li><strong>Cell signal is patchy</strong> on Glacier Point Road — screenshot directions and download an offline map before you head up.</li>
-      <li><strong>Bring layers + water.</strong> Glacier Point Road tops out around 7,000+ ft and runs cooler than the valley.</li>
-      <li><strong>Restrooms</strong> are at the Lodge, Glacier Point, and the Taft Point trailhead — not at the roadside viewpoints.</li>
+      <li><strong>Fuel up before the hills.</strong> No gas in Yosemite Valley — nearest is Crane Flat, El Portal, or Mariposa.</li>
+      <li><strong>Cell signal is patchy</strong> on Glacier Point Rd and Tioga Rd — screenshot directions and download an offline map first.</li>
+      <li><strong>Layers + water.</strong> Glacier Point Rd and Tenaya Lake are 7,000–8,000+ ft and run cooler than the Valley.</li>
+      <li><strong>Best light</strong> is late afternoon at Glacier Point / Washburn and at Tunnel View.</li>
     </ul>
   </div>
 
@@ -383,75 +300,61 @@
   <footer>
     <h4>Photo credits</h4>
     <p>
-      Photos via <a href="https://commons.wikimedia.org/wiki/Category:Yosemite_National_Park" target="_blank" rel="noopener">Wikimedia Commons</a>, used under CC BY / CC BY-SA / CC BY-SA 4.0:
-      David Iliff (Tunnel View, Glacier Point sunset, Half Dome from Glacier Point) ·
-      Tuxyso (Glacier Point panorama &amp; Half Dome 2013) ·
-      Thomas Wolf (Half Dome over the valley) ·
-      Brocken Inaglory (Yosemite Falls) ·
-      Chase Lindberg (Tunnel View, winter) ·
-      Sergei Mutovkin (Washburn Point panorama) ·
-      Dave (Taft Point panorama) ·
-      lamblukas (Taft Point fissures) ·
-      Tim Bergeron (Taft Point cliff) ·
-      Dietmar Rabich (Mirror Lake) ·
-      U.S. Geological Survey (El Capitan).
+      Photos via <a href="https://commons.wikimedia.org/wiki/Category:Yosemite_National_Park" target="_blank" rel="noopener">Wikimedia Commons</a>, used under CC BY / CC BY-SA:
+      David Iliff (Glacier Point, Tunnel View) · Tuxyso (Half Dome from Glacier Point) · Sergei Mutovkin (Washburn Point) · Pimlico27 (Sentinel Dome view) · lamblukas (Taft Point fissures) · Dcrjsr (Olmsted Point) · James St. John (Tenaya Lake) · Todd Petrie (Cathedral Beach) · Urban~commonswiki &amp; Mike McBey (Mirror Lake) · Brocken Inaglory (Yosemite Falls) · Thomas Wolf (Half Dome over the Valley).
     </p>
-    <p>Drive times and home-route estimates are rough — Glacier Point Road is winding and Bay Area traffic varies. Not affiliated with the National Park Service. Have a great trip! 🌲</p>
+    <p>Drive times and home-route estimates are rough — mountain roads are winding and Bay Area traffic varies. Not affiliated with the National Park Service. Have a great trip! 🌲</p>
   </footer>
 
 </div>
 
 <script>
 (function(){
-  /* ---- Preferences ---- */
-  var STORE_KEY = "yosemite-prefs-v1";
+  /* ---- Preferences → plan nudge ---- */
+  var STORE_KEY = "yosemite-prefs-v2";
   var state = { energy:null, priority:null };
-  try { var saved = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-        state.energy = saved.energy || null; state.priority = saved.priority || null; } catch(e){}
+  try { var s = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
+        state.energy = s.energy||null; state.priority = s.priority||null; } catch(e){}
 
   var energyTips = {
-    "chill":     "Keeping it relaxed? Every stop but Taft Point is a quick step from the car.",
-    "moderate":  "Good middle ground — you'll enjoy the short Glacier Point stroll, and Taft Point is there if you want more.",
-    "hike":      "Up for a hike? Make Taft Point the highlight — that 1.1 mi each-way trail is the one to do (park at the Sentinel Dome/Taft Point lot)."
+    "chill":    "Chill day? Lean Option C (easy Valley) or B (Tenaya) — minimal walking either way.",
+    "moderate": "Moderate energy fits any of the three — Option A's drive-up viewpoints are easy, with a hike only if you want it.",
+    "hike":     "Up for a hike? Option A is yours — Sentinel Dome and Taft Point share one trailhead."
   };
   var priorityTips = {
-    "views":         "Best views? Glacier Point and Washburn Point are the showstoppers — don't skip the short walk at Glacier Point.",
-    "least-walking": "Least walking? Taft Point is optional — the drive-up viewpoints (Tunnel View, Washburn) cover you, and Glacier Point is only a short paved stroll.",
-    "photos":        "Photo spots? Tunnel View at the start and the Glacier Point railing are the classic frames — aim for late-afternoon light."
+    "views":         "Best views? Option A (Glacier Point Road) — Glacier + Washburn, capped by Tunnel View at golden hour.",
+    "swim":          "Swimming? Option B (Tenaya Lake) is the best true swim; Option C's Merced beaches are good for a cooler dip.",
+    "least-walking": "Least effort? Option C keeps it flat and low-key; Option B is also light on walking with a great swim."
   };
 
   function render(){
-    document.querySelectorAll("#energy .chip").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.val === state.energy ? "true" : "false"); });
-    document.querySelectorAll("#priority .chip").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.val === state.priority ? "true" : "false"); });
-    var el = document.getElementById("tip-text"), parts = [];
-    if (state.priority) parts.push(priorityTips[state.priority]);
-    if (state.energy)   parts.push(energyTips[state.energy]);
-    el.textContent = parts.length ? parts.join(" ") : "Tap your energy and priority above and I'll add a quick tip. The route stays the same either way.";
+    document.querySelectorAll("#energy .chip").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.val===state.energy?"true":"false"); });
+    document.querySelectorAll("#priority .chip").forEach(function(b){ b.setAttribute("aria-pressed", b.dataset.val===state.priority?"true":"false"); });
+    var el=document.getElementById("tip-text"), parts=[];
+    if(state.priority) parts.push(priorityTips[state.priority]);
+    if(state.energy)   parts.push(energyTips[state.energy]);
+    el.textContent = parts.length ? parts.join(" ") : "Tap your energy and priority above and I'll nudge you toward a plan.";
   }
-  function save(){ try { localStorage.setItem(STORE_KEY, JSON.stringify(state)); } catch(e){} }
-  function wire(groupId, key){
-    document.getElementById(groupId).addEventListener("click", function(ev){
-      var btn = ev.target.closest(".chip"); if(!btn) return;
-      state[key] = (state[key] === btn.dataset.val) ? null : btn.dataset.val;
-      save(); render();
-    });
-  }
+  function save(){ try{ localStorage.setItem(STORE_KEY, JSON.stringify(state)); }catch(e){} }
+  function wire(id,key){ document.getElementById(id).addEventListener("click",function(ev){
+    var b=ev.target.closest(".chip"); if(!b) return;
+    state[key]=(state[key]===b.dataset.val)?null:b.dataset.val; save(); render();
+  }); }
   wire("energy","energy"); wire("priority","priority"); render();
 
-  /* ---- Swipe galleries: dots + hint ---- */
+  /* ---- Swipe galleries ---- */
   document.querySelectorAll(".gallery").forEach(function(g){
-    var n = g.children.length; if(n < 2) return;
-    var hint = document.createElement("div"); hint.className = "swipe-hint"; hint.textContent = "1 / " + n + "  ›  swipe";
+    var n=g.children.length; if(n<2) return;
+    var hint=document.createElement("div"); hint.className="swipe-hint"; hint.textContent="1 / "+n+"  ›  swipe";
     g.parentNode.appendChild(hint);
-    var dots = document.createElement("div"); dots.className = "dots";
-    for (var i=0;i<n;i++){ var s=document.createElement("span"); if(i===0) s.className="on"; dots.appendChild(s); }
+    var dots=document.createElement("div"); dots.className="dots";
+    for(var i=0;i<n;i++){ var sp=document.createElement("span"); if(i===0) sp.className="on"; dots.appendChild(sp); }
     g.parentNode.parentNode.insertBefore(dots, g.parentNode.nextSibling);
-    g.addEventListener("scroll", function(){
-      var idx = Math.round(g.scrollLeft / g.clientWidth);
-      idx = Math.max(0, Math.min(n-1, idx));
-      Array.prototype.forEach.call(dots.children, function(d,i){ d.className = (i===idx) ? "on" : ""; });
-      hint.textContent = (idx+1) + " / " + n + (idx < n-1 ? "  ›  swipe" : "");
-    }, {passive:true});
+    g.addEventListener("scroll",function(){
+      var idx=Math.round(g.scrollLeft/g.clientWidth); idx=Math.max(0,Math.min(n-1,idx));
+      Array.prototype.forEach.call(dots.children,function(d,i){ d.className=(i===idx)?"on":""; });
+      hint.textContent=(idx+1)+" / "+n+(idx<n-1?"  ›  swipe":"");
+    },{passive:true});
   });
 })();
 </script>
